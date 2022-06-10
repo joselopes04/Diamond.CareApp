@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group1">
+
+        <item android:id="@+id/nav_home"
+            android:title="Início"
+            android:icon="@drawable/ic_home"/>
+
+        <item android:id="@+id/nav_myprofile"
+            android:title="Meu Perfil"
+            android:icon="@drawable/ic_user"/>
+
+        <item android:id="@+id/nav_sessions"
+            android:title="Marcar sessões"
+            android:icon="@drawable/ic_appointments"/>
+
+        <item android:id="@+id/nav_mySessions"
+            android:title="Minhas marcações"
+            android:icon="@drawable/ic_calendar"/>
+
+        <item android:id="@+id/nav_offer"
+            android:title="Pontos"
+            android:icon="@drawable/ic_offer"/>
+        </group>
+
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group2">
+
+        <item android:id="@+id/nav_settings"
+            android:title="Definições"
+            android:icon="@drawable/ic_settings"/>
+
+        <item android:id="@+id/nav_share"
+            android:title="Partilhe a app"
+            android:icon="@drawable/ic_share"/>
+    </group>
+
+</menu>

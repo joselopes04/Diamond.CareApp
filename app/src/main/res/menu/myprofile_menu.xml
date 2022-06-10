@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_edit_profile"
+        android:icon="@drawable/ic_edit"
+        android:title="Editar conta"/>
+
+    <item
+        android:id="@+id/menu_edit_password"
+        android:icon="@drawable/ic_lock_reset"
+        android:title="Repor palavra-passe"/>
+
+    <item
+        android:id="@+id/menu_delete_account"
+        android:icon="@drawable/ic_delete"
+        android:title="Apagar conta"/>
+
+</menu>

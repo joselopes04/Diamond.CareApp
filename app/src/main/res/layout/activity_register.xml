@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_list"
+    tools:context=".Register">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="375dp"
+                    android:layout_height="135dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/logo_sem_fundo" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="180dp"
+                    android:fontFamily="@font/playfairdisplay_regular"
+                    android:text="Registe-se"
+                    android:textSize="35dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutName"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:hint=" Insira o seu Nome"
+                    android:inputType="textPersonName"
+                    android:textColorHint="#ffffff"
+                    app:endIconDrawable="@drawable/ic_check_circle"
+                    app:endIconMode="custom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:startIconDrawable="@drawable/ic_user">
+
+                    <EditText
+                        android:id="@+id/user_name"
+                        android:layout_width="300dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="38dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/transperent_edittxt"
+                        android:ems="10"
+                        android:fontFamily="@font/playfairdisplay_regular"
+                        android:inputType="textEmailAddress"
+                        android:textAlignment="viewStart"
+                        android:textColorHint="#ffffff"
+                        android:textSize="15dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutmail"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="84dp"
+                    android:hint="Insira o seu E-mail"
+                    android:textColorHint="#ffffff"
+                    app:endIconDrawable="@drawable/ic_check_circle"
+                    app:endIconMode="custom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:startIconDrawable="@drawable/ic_email">
+
+                    <EditText
+                        android:id="@+id/user_email"
+                        android:layout_width="300dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="38dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/transperent_edittxt"
+                        android:ems="10"
+                        android:fontFamily="@font/playfairdisplay_regular"
+                        android:inputType="textEmailAddress"
+                        android:textAlignment="viewStart"
+                        android:textColorHint="#ffffff"
+                        android:textSize="15dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <EditText
+                    android:id="@+id/user_phone"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/transperent_edittxt"
+                    android:ems="10"
+                    android:fontFamily="@font/playfairdisplay_regular"
+                    android:gravity="center"
+                    android:hint="Insira o seu número de telemóvel"
+                    android:inputType="number"
+                    android:textColorHint="#ffffff"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.468"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutmail" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutPass"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColorHint="#ffffff"
+                    app:helperText="Required*"
+                    app:helperTextTextColor="@color/red"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.477"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_phone"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/ic_lock">
+
+                    <EditText
+                        android:id="@+id/user_password"
+                        android:layout_width="300dp"
+                        android:layout_height="45dp"
+                        android:background="@drawable/transperent_edittxt"
+                        android:ems="10"
+                        android:fontFamily="@font/playfairdisplay_regular"
+                        android:gravity="center"
+                        android:hint="Insira uma palavra-passe"
+                        android:inputType="textPassword"
+                        android:textColorHint="#ffffff"
+                        android:textSize="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.686"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/user_phone" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/checkTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:enabled="true"
+                    android:fontFamily="@font/playfairdisplay_regular"
+                    android:onClick="checkTerms"
+                    android:text="Aceito os "
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/googleCaptcha"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.168"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPass" />
+
+                <CheckBox
+                    android:id="@+id/googleCaptcha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="44dp"
+                    android:buttonTint="@color/blue"
+                    android:fontFamily="@font/playfairdisplay_regular"
+                    android:onClick="Captcha"
+                    android:text="Não sou um robot"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.203"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/checkTerms" />
+
+                <TextView
+                    android:id="@+id/textViewTerms"
+                    android:layout_width="163dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="96dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/playfairdisplay_regular"
+                    android:text="TERMOS E CONDIÇÕES"
+                    android:textColor="#CAE4F1"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/googleCaptcha"
+                    app:layout_constraintStart_toStartOf="@+id/checkTerms"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPass"
+                    app:layout_constraintVertical_bias="0.363" />
+
+                <Button
+                    android:id="@+id/btn_regist"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="124dp"
+                    android:background="@drawable/gradient_button"
+                    android:fontFamily="@font/playfairdisplay_regular"
+                    android:onClick="signupButtonClicked"
+                    android:text="REGISTAR"
+                    android:textSize="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/googleCaptcha"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/txt_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/playfairdisplay_regular"
+                    android:text="Já têm conta? Faça o Login"
+                    android:textColor="#CAE4F1"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_regist" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/progressBarRegist"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/progressbar_circle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
