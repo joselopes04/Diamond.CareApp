@@ -119,8 +119,6 @@ public class Home extends AppCompatActivity {
             }
         });
 
-
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         userID = user.getUid();
@@ -163,6 +161,27 @@ public class Home extends AppCompatActivity {
                 Toast.makeText(Home.this, "Algo correu mal", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    //Cards de navegação
+    public void cardProfileClicked(View v){
+        Intent intentmyprofile = new Intent(Home.this, MyProfile.class);
+        startActivity(intentmyprofile);
+    }
+    public void cardSessionsClicked(View v){
+        Intent intentsession = new Intent(Home.this, SessionsDate.class);
+        startActivity(intentsession);
+    }
+    public void cardMySessionsClicked(View v){
+        Intent intentMySession = new Intent(Home.this, MySessions.class);
+        startActivity(intentMySession);
+    }
+    public void cardPointsClicked(View v){
+        Toast.makeText(this, "Nada", Toast.LENGTH_SHORT).show();
+    }
+    public void cardSettingsClicked(View v){
+        Intent intentsettings = new Intent(Home.this, Settings.class);
+        startActivity( intentsettings);
     }
 
     //Butão para abrir o drawermenu

@@ -63,7 +63,7 @@ public class MySessions extends AppCompatActivity {
         setUpToolbar();
 
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_mySessions);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
