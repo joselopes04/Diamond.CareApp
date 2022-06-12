@@ -7,6 +7,7 @@ O que têm:
 
 Registo e o login de um user através da Firebase, enviar um email para repor a palavra passe.
 Menu Hamburguer
+Cards de navegação
 Ver e editar as informações da conta utilizador.
 Ecrã para realizar marcações.
 
