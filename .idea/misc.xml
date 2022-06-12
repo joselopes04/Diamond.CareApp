@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.246" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/gradient_background1.xml" value="0.177" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/gradient_button.xml" value="0.177" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_check_circle.xml" value="0.177" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_delete.xml" value="0.246" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_dots_menu.xml" value="0.246" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_email.xml" value="0.246" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_home.xml" value="0.236" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_launcher3_background.xml" value="0.177" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_policy.xml" value="0.246" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_wifi_off.xml" value="0.236" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/toast_error_background.xml" value="0.177" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/toast_normal_background.xml" value="0.177" />

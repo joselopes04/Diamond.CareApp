@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("Checkbox", MODE_PRIVATE);
         String keep = preferences.getString("remember", "");
         if (keep.equals("ON")){
-            Intent intent =new Intent(MainActivity.this, Animation.class);
+            Intent intent = new Intent(MainActivity.this, Animation.class);
             startActivity(intent);
         }
 

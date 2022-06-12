@@ -265,7 +265,7 @@ public class Register extends AppCompatActivity {
           return matcher.matches();
       }
 
-      //Chamar a função para mostrar os termos qnd se toca na checkbox
+      //Chamar o alertDialog para mostrar os termos qnd se toca na checkbox
     public void checkTerms(View v){
         showWarningDialog();
     }
@@ -276,14 +276,14 @@ public class Register extends AppCompatActivity {
         View layout_dialog = LayoutInflater.from(Register.this).inflate(R.layout.terms_and_conditions, null);
         builder.setView(layout_dialog);
 
-        AppCompatButton btnRetry = layout_dialog.findViewById(R.id.btn_acept);
+        AppCompatButton btnAccept = layout_dialog.findViewById(R.id.btn_accept);
 
         AlertDialog dialog = builder.create();
         dialog.show();
         dialog.setCancelable(false);
         dialog.getWindow().setGravity(Gravity.CENTER);
 
-        btnRetry.setOnClickListener(new View.OnClickListener() {
+        btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkBox.setChecked(true);
@@ -291,7 +291,6 @@ public class Register extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
     }
 
     //Google Recaptcha

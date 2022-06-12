@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -58,16 +60,6 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setUpToolbar();
 
-        // Selecionar o tema escolhido pelo utilizador
-        /*
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-        if (sharedPreferences.getBoolean(KEY_ISNIGHTMODE, false)) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-         }
-*/
         //Menu
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setCheckedItem(R.id.nav_home);
@@ -193,9 +185,9 @@ public class Home extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
+    //Butão back
     @Override
     public void onBackPressed() {
-
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_normal, (ViewGroup) findViewById(R.id.toast_normal_layout));
         TextView toastText = layout.findViewById(R.id.toast_normal_txt);
@@ -213,6 +205,7 @@ public class Home extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
     }
 
+    //Verificar ligação á internet do user qnd a app é iniciada
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -220,6 +213,7 @@ public class Home extends AppCompatActivity {
         super.onStart();
     }
 
+    //Parar de verificar ligação á internet do user qnd a app é fechada
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);

@@ -516,7 +516,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
         toast.show();
     }
 
-    //Verificar ligação á internet do user
+    //Verificar ligação á internet do user qnd a app é iniciada
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -524,6 +524,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
         super.onStart();
     }
 
+    //Parar de verificar ligação á internet do user qnd a app é fechada
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);

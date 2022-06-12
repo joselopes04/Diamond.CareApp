@@ -1,12 +1,16 @@
 package com.example.diamondcare;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
@@ -14,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -26,12 +31,11 @@ public class Settings extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
-    private Switch switch_theme;
+    Switch switch_theme;
 
     public static final String KEY_ISNIGHTMODE = "isNightMode";
     public static final String MyPREFERENCES = "nightModePrefs";
     SharedPreferences sharedPreferences;
-
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
@@ -41,10 +45,17 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         setUpToolbar();
 
+//        switch_theme = findViewById(R.id.switch_theme);
+//        sharedPreferences = getSharedPreferences("night", 0);
+//        Boolean booleanValue = sharedPreferences.getBoolean("night_mode", true);
+//        if(booleanValue){
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//            switch_theme.setChecked(true);
+//        }else{
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//            switch_theme.setChecked(false);
+//        }
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-        switch_theme =  findViewById(R.id.switch_theme);
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setCheckedItem(R.id.nav_settings);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -93,41 +104,27 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-/*
-        checkIsNightModeActivated();
 
-        switch_theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    getDelegate().setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    saveNightModeState(true);
-                    recreate();
-                } else {
-                    getDelegate().setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    saveNightModeState(false);
-                    recreate();
-                }
-            }
-        });
-        */
-    }
 
-    private void saveNightModeState(boolean nightMode) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(KEY_ISNIGHTMODE, nightMode);
-        editor.apply();
-    }
-
-    public void checkIsNightModeActivated(){
-        if (sharedPreferences.getBoolean(KEY_ISNIGHTMODE, false)){
-            switch_theme.setChecked(true);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else{
-            switch_theme.setChecked(false);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        switch_theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked){
+//                    getDelegate().setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                    switch_theme.setChecked(true);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putBoolean("night_mode",true);
+//                    editor.commit();
+//                } else {
+//                    getDelegate().setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                    switch_theme.setChecked(false);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putBoolean("night_mode",false);
+//                    editor.commit();
+//                }
+//            }
+//        });
         }
-    }
 
 
     public void setUpToolbar() {
@@ -136,9 +133,35 @@ public class Settings extends AppCompatActivity {
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_drawer_open, R.string.menu_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-
     }
 
+    //Chamar o alertDialog para mostrar os termos
+    public void checkTerms(View v){
+        showWarningDialog();
+    }
+
+    //Mostrar Termos e Condições
+    private void showWarningDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
+        View layout_dialog = LayoutInflater.from(Settings.this).inflate(R.layout.terms_and_conditions, null);
+        builder.setView(layout_dialog);
+
+        AppCompatButton btnAccept = layout_dialog.findViewById(R.id.btn_accept);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.getWindow().setGravity(Gravity.CENTER);
+
+        btnAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    //Butão back
     @Override
     public void onBackPressed() {
         Intent intentHome = new Intent(Settings.this, Home.class);

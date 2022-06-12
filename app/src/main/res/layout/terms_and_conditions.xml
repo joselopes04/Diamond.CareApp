@@ -58,14 +58,14 @@
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         <Button
-            android:id="@+id/btn_acept"
+            android:id="@+id/btn_accept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="15dp"
             android:background="@drawable/gradient_button"
-            android:text="Aceito os termos"
+            android:text="Entendi"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
