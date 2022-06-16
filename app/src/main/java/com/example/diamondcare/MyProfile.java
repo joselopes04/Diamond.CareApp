@@ -16,18 +16,14 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.example.diamondcare.Model.User;
 import com.example.diamondcare.Utility.NetworkChangeListener;
@@ -43,15 +39,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-import com.wdullaer.materialdatetimepicker.date.MonthAdapter;
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -96,7 +85,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
 
         //Menu de navegação
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
-        navigationView.setCheckedItem(R.id.nav_myprofile);
+        navigationView.setCheckedItem(R.id.nav_myProfile);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -106,7 +95,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                         Intent intentHome = new Intent(MyProfile.this, Home.class);
                         startActivity(intentHome);
 
-                    case  R.id.nav_myprofile:
+                    case  R.id.nav_myProfile:
                         drawerLayout.closeDrawer(navigationView);
                         break;
 
@@ -124,11 +113,12 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
 
                         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                         sharingIntent.setType("text/plain");
-                        String shareBody =  "Hey eu estou a adorar usar a app Diamond Care http://play.google.com/store/apps/detail?id=" + getPackageName();
-                        String shareSub = "Try now";
+                        String shareBody =  getString(R.string.shareBody) + " http://play.google.com/store/apps/detail?id=" + getPackageName();
+                        String shareSub = getString(R.string.shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                        startActivity(Intent.createChooser(sharingIntent, "Partilhar com"));
+                        String shareTitle = getString(R.string.shareTitle);
+                        startActivity(Intent.createChooser(sharingIntent, shareTitle));
 
                     }
                     break;

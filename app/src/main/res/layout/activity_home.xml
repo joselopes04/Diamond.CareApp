@@ -25,7 +25,7 @@
                     android:id="@+id/textView7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Início"
+                    android:text="@string/homeTitle"
                     android:textColor="#fff"
                     android:textSize="21dp"
                     android:textStyle="bold"/>
@@ -81,8 +81,8 @@
                             android:textColor="@color/black"/>
                     </LinearLayout>
 
-
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,7 +125,6 @@
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp"
                     android:onClick="cardMySessionsClicked">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -204,7 +203,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Definições"
+                            android:text="@string/settingsTitle"
                             android:textSize="18dp"
                             android:textColor="@color/black"/>
                     </LinearLayout>

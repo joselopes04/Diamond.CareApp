@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -97,7 +96,7 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
                         startActivity(intentHome);
                         break;
 
-                    case  R.id.nav_myprofile:
+                    case  R.id.nav_myProfile:
                         Intent intentmyprofile = new Intent(SessionsDate.this, MyProfile.class);
                         startActivity(intentmyprofile);
                         break;
@@ -119,11 +118,12 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
                     case  R.id.nav_share:{
                         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                         sharingIntent.setType("text/plain");
-                        String shareBody =  "Hey eu estou a adorar usar a app Diamond Care http://play.google.com/store/apps/detail?id=" + getPackageName();
-                        String shareSub = "Try now";
+                        String shareBody =  getString(R.string.shareBody) + " http://play.google.com/store/apps/detail?id=" + getPackageName();
+                        String shareSub = getString(R.string.shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                        startActivity(Intent.createChooser(sharingIntent, "Partilhar com"));
+                        String shareTitle = getString(R.string.shareTitle);
+                        startActivity(Intent.createChooser(sharingIntent, shareTitle));
 
                     }
                     break;

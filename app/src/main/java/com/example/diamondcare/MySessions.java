@@ -12,12 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diamondcare.Adapter.MySessionsAdapter;
@@ -74,7 +69,7 @@ public class MySessions extends AppCompatActivity {
                         startActivity( intenthome);
                         break;
 
-                    case  R.id.nav_myprofile:
+                    case  R.id.nav_myProfile:
                         Intent intentmyprofile = new Intent(MySessions.this, MyProfile.class);
                         startActivity(intentmyprofile);
                         break;
@@ -97,11 +92,12 @@ public class MySessions extends AppCompatActivity {
 
                         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                         sharingIntent.setType("text/plain");
-                        String shareBody =  "Hey eu estou a adorar usar a app Diamond Care. Com ela consigo muitos DESCONTOS em cortes de cabelo. Aqui está o link para download http://play.google.com/store/apps/detail?id=" + getPackageName();
-                        String shareSub = "Try now";
+                        String shareBody =  getString(R.string.shareBody) + " http://play.google.com/store/apps/detail?id=" + getPackageName();
+                        String shareSub = getString(R.string.shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                        startActivity(Intent.createChooser(sharingIntent, "Partilhar com"));
+                        String shareTitle = getString(R.string.shareTitle);
+                        startActivity(Intent.createChooser(sharingIntent, shareTitle));
 
                     }
                     break;

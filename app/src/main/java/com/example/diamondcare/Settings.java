@@ -1,23 +1,26 @@
 package com.example.diamondcare;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -25,11 +28,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.diamondcare.Utility.NetworkChangeListener;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Locale;
+
 public class Settings extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+
+    Spinner spinner;
+    String text = "Idioma-Language";
 
     Switch switch_theme;
 
@@ -41,8 +49,10 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_settings);
+
+        spinner = findViewById(R.id.languageSelector);
+
         setUpToolbar();
 
 //        switch_theme = findViewById(R.id.switch_theme);
@@ -68,7 +78,7 @@ public class Settings extends AppCompatActivity {
                         startActivity( intenthome);
                         break;
 
-                    case  R.id.nav_myprofile:
+                    case  R.id.nav_myProfile:
                         Intent intentmyprofile = new Intent(Settings.this, MyProfile.class);
                         startActivity(intentmyprofile);
                         break;
@@ -91,11 +101,12 @@ public class Settings extends AppCompatActivity {
 
                         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                         sharingIntent.setType("text/plain");
-                        String shareBody =  "Hey eu estou a adorar usar a app Diamond Care http://play.google.com/store/apps/detail?id=" + getPackageName();
-                        String shareSub = "Try now";
+                        String shareBody =  getString(R.string.shareBody) + " http://play.google.com/store/apps/detail?id=" + getPackageName();
+                        String shareSub = getString(R.string.shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                        startActivity(Intent.createChooser(sharingIntent, "Partilhar com"));
+                        String shareTitle = getString(R.string.shareTitle);
+                        startActivity(Intent.createChooser(sharingIntent, shareTitle));
 
                     }
                     break;
@@ -124,8 +135,44 @@ public class Settings extends AppCompatActivity {
 //                }
 //            }
 //        });
+
+        String[] languages = { text, "Portugês", "English"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(0);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectLang = adapterView.getItemAtPosition(i).toString();
+                if(selectLang.equals("Portugês")){
+                    setLocal(Settings.this,"pt");
+                    finish();
+                    startActivity(getIntent());
+
+                }else if (selectLang.equals("English")){
+                    setLocal(Settings.this, "en");
+                    finish();
+                    startActivity(getIntent());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         }
 
+        public void setLocal(Activity activity, String lanCode){
+        Locale locale = new Locale(lanCode);
+        locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+        }
 
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.settingsLayout);

@@ -5,23 +5,23 @@
         android:id="@+id/group1">
 
         <item android:id="@+id/nav_home"
-            android:title="Início"
+            android:title="@string/homeTitle"
             android:icon="@drawable/ic_home"/>
 
-        <item android:id="@+id/nav_myprofile"
-            android:title="Meu Perfil"
+        <item android:id="@+id/nav_myProfile"
+            android:title="@string/profileTitle"
             android:icon="@drawable/ic_user"/>
 
         <item android:id="@+id/nav_sessions"
-            android:title="Marcar sessões"
+            android:title="@string/sessionsTitle"
             android:icon="@drawable/ic_appointments"/>
 
         <item android:id="@+id/nav_mySessions"
-            android:title="Minhas marcações"
+            android:title="@string/mySessionsTitle"
             android:icon="@drawable/ic_calendar"/>
 
         <item android:id="@+id/nav_offer"
-            android:title="Pontos"
+            android:title="@string/pointsTitle"
             android:icon="@drawable/ic_offer"/>
         </group>
 
@@ -30,11 +30,11 @@
         android:id="@+id/group2">
 
         <item android:id="@+id/nav_settings"
-            android:title="Definições"
+            android:title="@string/settingsTitle"
             android:icon="@drawable/ic_settings"/>
 
         <item android:id="@+id/nav_share"
-            android:title="Partilhe a app"
+            android:title="@string/shareAppTitle"
             android:icon="@drawable/ic_share"/>
     </group>
 

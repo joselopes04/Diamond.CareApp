@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -126,7 +125,7 @@ public class Sessions_step3 extends AppCompatActivity {
                         startActivity(intentHome);
                         break;
 
-                    case  R.id.nav_myprofile:
+                    case  R.id.nav_myProfile:
                         Intent intentmyprofile = new Intent(Sessions_step3.this, MyProfile.class);
                         startActivity(intentmyprofile);
                         break;
@@ -148,11 +147,12 @@ public class Sessions_step3 extends AppCompatActivity {
                     case  R.id.nav_share:{
                         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                         sharingIntent.setType("text/plain");
-                        String shareBody =  "Hey eu estou a adorar usar a app Diamond Care http://play.google.com/store/apps/detail?id=" + getPackageName();
-                        String shareSub = "Try now";
+                        String shareBody =  getString(R.string.shareBody) + " http://play.google.com/store/apps/detail?id=" + getPackageName();
+                        String shareSub = getString(R.string.shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
                         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                        startActivity(Intent.createChooser(sharingIntent, "Partilhar com"));
+                        String shareTitle = getString(R.string.shareTitle);
+                        startActivity(Intent.createChooser(sharingIntent, shareTitle));
 
                     }
                     break;

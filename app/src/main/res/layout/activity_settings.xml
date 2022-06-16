@@ -23,7 +23,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Definições"
+                android:text="@string/settingsTitle"
                 android:textColor="#fff"
                 android:textSize="21dp"
                 android:textStyle="bold" />
@@ -37,17 +37,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="20dp"
-            android:text="Tema da aplicação"
+            android:text="@string/themeTitle"
             android:textSize="20dp"/>
 
         <TextView
             android:id="@+id/textView1"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:layout_marginLeft="20dp"
-            android:text="O tema da aplicação é definido automáticamnete de acordo com o tema do seu dispositivo." />
+            android:text="@string/themeDesc" />
 
 <!--        <Switch-->
 <!--            android:id="@+id/switch_theme"-->
@@ -63,7 +62,7 @@
             android:id="@+id/txt_termsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Termos e condições"
+            android:text="@string/termsConditions"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"
             android:onClick="checkTerms"/>
@@ -71,13 +70,25 @@
             android:id="@+id/txt_terms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Clique para consultar os Termos e condições"
+            android:text="@string/termsConditionsDesc"
             android:layout_marginLeft="20dp"
             android:onClick="checkTerms"/>
 
+        <TextView
+            android:id="@+id/txt_spinnerTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinnerTitle"
+            android:textSize="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:onClick="checkTerms"/>
+        <Spinner
+            android:id="@+id/languageSelector"
+            android:layout_width="250dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"/>
     </LinearLayout>
-
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_menu"

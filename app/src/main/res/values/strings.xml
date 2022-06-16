@@ -1,14 +1,35 @@
 <resources>
-    <string name="app_name">Diamond Care</string>
-    <string name="menu_drawer_open">Abrir Menu</string>
-    <string name="menu_drawer_close">Fechar Menu</string>
-    <string name="none"></string>
+    <string name="app_name" translatable="false">Diamond Care</string>
 
-    <string name="termos_e_condições_titulo">
+    <!--Menu Hamburguer-->
+    <string name="shareAppTitle">Partilhe a app</string>
+    <string name="menu_drawer_open">Abrir menu</string>
+    <string name="menu_drawer_close">Fechar menu</string>
+    <string name="homeTitle">Início</string>
+    <string name="profileTitle">Meu Perfil</string>
+    <string name="sessionsTitle">Marcar sessões</string>
+    <string name="mySessionsTitle">Minhas marcações</string>
+    <string name="pointsTitle">Pontos</string>
+    <string name="settingsTitle">Definições</string>
+
+    <!--Settings-->
+    <string name="themeTitle">Tema da aplicação</string>
+    <string name="themeDesc">O tema da aplicação é definido automáticamnete de acordo com o tema do seu dispositivo.</string>
+    <string name="spinnerTitle">Idioma</string>
+
+    <!--Partilhar a app-->
+    <string name="shareTitle">Partilhar com:</string>
+    <string name="shareBody">"Hey eu estou a adorar usar a app Diamond Care. Com ela ganho muitos DESCONTOS em cortes de cabelo. Aqui está o link para download</string>
+    <string name="shareSub">"Exprimenta já!"</string>
+
+    <!--Termos e condições-->
+    <string name="termsConditions">Termos e condições</string>
+    <string name="termsConditionsDesc">Clique para consultar os Termos e condições</string>.
+
+    <string name="termsConditionsTitle">
         Ao aceitar estes termos irão se aplicar a si automáticamente - você deve certificar-se, portanto, de lê-los cuidadosamente antes de usar o aplicativo
     </string>
-
-    <string name="termos_e_condições">
+    <string name="termsCondiçõesTxt">
         Você não tem permissão para copiar ou modificar o aplicativo, qualquer parte do aplicativo ou nossas marcas registradas de forma alguma.
         Você não tem permissão para tentar extrair o código-fonte do aplicativo e também não deve tentar traduzir o aplicativo para outros idiomas ou fazer versões derivadas.
         O aplicativo em si e todas as marcas registradas, direitos autorais, direitos de base de dados e outros direitos de propriedade inteletual relacionados a ele ainda pertencem à Diamond Care.
@@ -34,10 +55,13 @@
         A menos que lhe digamos o contrário, após qualquer rescisão, (a) os direitos e licenças concedidos a você nestes termos terminarão; (b) você deve parar de usar o aplicativo e (se necessário) excluí-lo do seu dispositivo.
         \n\n Alterações a estes Termos e Condições
         \n\n Podemos atualizar nossos Termos e Condições de tempos em tempos. Assim, recomendamos que você revise esta página periodicamente para quaisquer alterações. Iremos notificá-lo de quaisquer alterações publicando os novos Termos e Condições nesta página.
-        \n\n Estes termos e condições estão em vigor a desde: 31/03/2022
+        \n\n Estes termos e condições estão em vigor desde: 31/03/2022
         \n\n Contate-Nos:
         \n\n Se tiver alguma dúvida ou sugestão sobre os nossos Termos e Condições, não hesite em contactar-nos para diamondcare.pt@gmail.com.
     </string>
+    <string name="btnAccept">Entendido</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main2">MainActivity2</string>
@@ -49,6 +73,5 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
 
 </resources>
