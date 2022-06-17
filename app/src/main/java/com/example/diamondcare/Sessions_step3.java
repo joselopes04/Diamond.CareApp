@@ -77,42 +77,46 @@ public class Sessions_step3 extends AppCompatActivity {
         String date = "Erro";
         String hour = "Erro";
 
+        //obter os dados que o user preencheu no ecrã anterior
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             date = extras.getString("date");
             hour = extras.getString("hour");
         }
 
-        txtData.setText(date);
-        txtHora.setText(hour);
-
         appointments = new ArrayList<Appointment>();
         appointments.add(new Appointment(date, hour));
 
+        txtData.setText(date);
+        txtHora.setText(hour);
+
+        //Steps no topo do ecrã
         ButterKnife.bind(Sessions_step3.this);
 
         setUpToolbar();
         setUpSetView();
         setUpColorButton();
 
+        //Contar quantas marcações o user já têm na DB
         user = FirebaseAuth.getInstance().getCurrentUser();
         userID = user.getUid();
         databaseReference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    maxId=(snapshot.child(userID).child("marcacoes").getChildrenCount());
+                    maxId=(snapshot.child("marcacoes").getChildrenCount());
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast toast2 = Toast.makeText(Sessions_step3.this, "Erro na DB", Toast.LENGTH_SHORT);
+                toast2.show();
             }
         });
 
-
+        //Menu
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setCheckedItem(R.id.nav_sessions);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -162,6 +166,7 @@ public class Sessions_step3 extends AppCompatActivity {
         });
     }
 
+    //Butão para abrir o drawermenu
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.sessionsStep3_Layout);
         Toolbar toolbar = findViewById(R.id.toolbarsessionsStep3);
@@ -171,6 +176,7 @@ public class Sessions_step3 extends AppCompatActivity {
 
     }
 
+    //Defenir os steps no topo do ecrã
     private void setUpSetView() {
         List<String> stepList = new ArrayList<>();
         stepList.add("Data");
@@ -179,7 +185,7 @@ public class Sessions_step3 extends AppCompatActivity {
         stepView.go(1,true);
     }
 
-
+    //Ajustar a cor dos botões
     private void setUpColorButton() {
 
         if (btn_next.isEnabled()){
@@ -195,11 +201,13 @@ public class Sessions_step3 extends AppCompatActivity {
 
     }
 
+    //Butão para voltar ao ecrã anterior
     public void btn_prev3Clicked(View v){
         Intent intentNext = new Intent(Sessions_step3.this, SessionsDate.class);
         startActivity(intentNext);
     }
 
+    //Butão para realizar a marcação
     public void btn_concluir3Clicked(View v){
         new AlertDialog.Builder(Sessions_step3.this)
                 .setTitle("Marcar sessão")
@@ -227,7 +235,6 @@ public class Sessions_step3 extends AppCompatActivity {
             public void onComplete(@NonNull Task task) {
 
                 if (task.isSuccessful()){
-
                     databaseReference.child(userID).child("marcacoes").child("M-Id"+String.valueOf(maxId+1)).setValue(appointments);
 
                     LayoutInflater inflater = getLayoutInflater();
@@ -260,7 +267,7 @@ public class Sessions_step3 extends AppCompatActivity {
         });
     }
 
-    //Verificar ligação á internet do user
+    //Verificar ligação á internet do user qnd este ecrã é iniciado
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -268,6 +275,7 @@ public class Sessions_step3 extends AppCompatActivity {
         super.onStart();
     }
 
+    //Parar de verificar ligação á internet do user qnd este ecrã é fechado
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);

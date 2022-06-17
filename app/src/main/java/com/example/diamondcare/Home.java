@@ -114,7 +114,6 @@ public class Home extends AppCompatActivity {
 
         final TextView welcomeTextView = (TextView) findViewById(R.id.welcome);
 
-
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -202,7 +201,7 @@ public class Home extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
     }
 
-    //Verificar ligação á internet do user qnd a app é iniciada
+    //Verificar ligação á internet do user qnd este ecrã é iniciado
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -210,7 +209,7 @@ public class Home extends AppCompatActivity {
         super.onStart();
     }
 
-    //Parar de verificar ligação á internet do user qnd a app é fechada
+    //Parar de verificar ligação á internet do user qnd este ecrã é fechado
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);
