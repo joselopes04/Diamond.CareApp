@@ -216,7 +216,7 @@ public class Register extends AppCompatActivity {
                       if (task.isSuccessful()){
 
                           String birth ="";
-                          User user = new User(txt_user_name,txt_user_email,txt_user_phone,hashedPassword,birth,appointments);
+                          User user = new User(txt_user_name,txt_user_email,txt_user_phone,hashedPassword,birth);
 
                           FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
                           .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

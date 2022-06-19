@@ -115,7 +115,6 @@ public class MySessions extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         userID =  user.getUid();
-
         list = new ArrayList<>();
         mySessionsAdapter = new MySessionsAdapter(this, list);
         recyclerView.setAdapter(mySessionsAdapter);

@@ -84,9 +84,6 @@ public class Sessions_step3 extends AppCompatActivity {
             hour = extras.getString("hour");
         }
 
-        appointments = new ArrayList<Appointment>();
-        appointments.add(new Appointment(date, hour));
-
         txtData.setText(date);
         txtHora.setText(hour);
 
@@ -215,56 +212,59 @@ public class Sessions_step3 extends AppCompatActivity {
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String date = "Erro";
+                        String hour = "Erro";
 
-                        updateData(appointments);
+                        //obter os dados que o user preencheu no ecrã anterior
+                        Bundle extras = getIntent().getExtras();
+                        if(extras != null){
+                            date = extras.getString("date");
+                            hour = extras.getString("hour");
+                        }
 
+                        Appointment appointments = new Appointment(date, hour);
+                        HashMap User = new HashMap();
+                        databaseReference.child(userID).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+                            @Override
+                            public void onComplete(@NonNull Task task) {
+
+                                if (task.isSuccessful()){
+                                    databaseReference.child(userID).child("marcacoes").child("M-Id"+String.valueOf(maxId+1)).setValue(appointments);
+
+                                    LayoutInflater inflater = getLayoutInflater();
+                                    View layout = inflater.inflate(R.layout.toast_sucess, (ViewGroup) findViewById(R.id.toast_sucess_layout));
+                                    TextView toastText = layout.findViewById(R.id.toast_sucess_txt);
+                                    toastText.setText("Marcação realizada com sucesso");
+                                    Toast toast = new Toast(getApplicationContext());
+                                    toast.setGravity(Gravity.CENTER, 0, 0);
+                                    toast.setDuration(Toast.LENGTH_SHORT);
+                                    toast.setView(layout);
+                                    toast.show();
+
+                                    Intent intentHome = new Intent(Sessions_step3.this, Home.class);
+                                    startActivity(intentHome);
+
+                                }else{
+                                    LayoutInflater inflater = getLayoutInflater();
+                                    View layout = inflater.inflate(R.layout.toast_error, (ViewGroup) findViewById(R.id.toast_error_layout));
+                                    TextView toastText = layout.findViewById(R.id.toast_error_txt);
+                                    toastText.setText("Algo correu mal ..., por favor tente novamente.");
+                                    Toast toast = new Toast(getApplicationContext());
+                                    toast.setGravity(Gravity.CENTER, 0, 0);
+                                    toast.setDuration(Toast.LENGTH_SHORT);
+                                    toast.setView(layout);
+                                    toast.show();
+                                    Toast.makeText(Sessions_step3.this, "Algo correu mal...", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
                     }
                 }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         }).show();
-    }
-
-    //Salvar os dados que o utilizador introduziu na DB
-    public void updateData(ArrayList<Appointment> appointments){
-
-        HashMap User = new HashMap();
-        databaseReference.child(userID).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
-            @Override
-            public void onComplete(@NonNull Task task) {
-
-                if (task.isSuccessful()){
-                    databaseReference.child(userID).child("marcacoes").child("M-Id"+String.valueOf(maxId+1)).setValue(appointments);
-
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_sucess, (ViewGroup) findViewById(R.id.toast_sucess_layout));
-                    TextView toastText = layout.findViewById(R.id.toast_sucess_txt);
-                    toastText.setText("Marcação realizada com sucesso");
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.setDuration(Toast.LENGTH_SHORT);
-                    toast.setView(layout);
-                    toast.show();
-
-                    Intent intentHome = new Intent(Sessions_step3.this, Home.class);
-                    startActivity(intentHome);
-
-                }else{
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_error, (ViewGroup) findViewById(R.id.toast_error_layout));
-                    TextView toastText = layout.findViewById(R.id.toast_error_txt);
-                    toastText.setText("Algo correu mal ..., por favor tente novamente.");
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.setDuration(Toast.LENGTH_SHORT);
-                    toast.setView(layout);
-                    toast.show();
-                    Toast.makeText(Sessions_step3.this, "Algo correu mal...", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
     }
 
     //Verificar ligação á internet do user qnd este ecrã é iniciado
