@@ -2,12 +2,10 @@ package com.example.diamondcare.Model;
 
 import java.io.Serializable;
 
-//Lista Importante não apagar
+//Guardar appointments
 public class Appointment implements Serializable {
 
-    private String date;
-    private String hour;
-
+     String date, hour;
 
     public Appointment(String hour, String date) {
         this.date = date;

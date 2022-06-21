@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.diamondcare.Model.Appointment;
+import com.example.diamondcare.Model.ShowAppointment;
 import com.example.diamondcare.R;
 
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public class MySessionsAdapter extends RecyclerView.Adapter<MySessionsAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<Appointment> list;
+    ArrayList<ShowAppointment> list;
 
-    public MySessionsAdapter(Context context, ArrayList<Appointment> list) {
+    public MySessionsAdapter(Context context, ArrayList<ShowAppointment> list) {
         this.context = context;
         this.list = list;
     }
@@ -34,7 +34,7 @@ public class MySessionsAdapter extends RecyclerView.Adapter<MySessionsAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Appointment appointment = list.get(position);
+        ShowAppointment appointment = list.get(position);
         holder.date.setText(appointment.getDate());
         holder.hour.setText(appointment.getHour());
 
