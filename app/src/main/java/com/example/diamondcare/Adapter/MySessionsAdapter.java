@@ -57,4 +57,8 @@ public class MySessionsAdapter extends RecyclerView.Adapter<MySessionsAdapter.Vi
         }
     }
 
+//    public void deleteItem(int position){
+//        ShowAppointment item = list.get(position)
+//    }
+
 }

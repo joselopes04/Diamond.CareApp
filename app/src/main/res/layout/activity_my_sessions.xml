@@ -30,9 +30,21 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aqui pode gerir as suas marcações"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_MySessions"
             android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:layout_weight="1"/>

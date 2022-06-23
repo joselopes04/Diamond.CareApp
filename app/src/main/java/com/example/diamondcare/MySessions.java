@@ -2,22 +2,30 @@ package com.example.diamondcare;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Canvas;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.diamondcare.Adapter.MySessionsAdapter;
 import com.example.diamondcare.Model.ShowAppointment;
 import com.example.diamondcare.Utility.NetworkChangeListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,12 +37,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
 public class MySessions extends AppCompatActivity {
 
     private FirebaseUser user;
     private String userID;
 
-    RecyclerView recyclerView;
+    RecyclerView  recyclerView;
     DatabaseReference databaseReference;
     MySessionsAdapter mySessionsAdapter;
     ArrayList<ShowAppointment> list;
@@ -131,6 +141,48 @@ public class MySessions extends AppCompatActivity {
                 toast.show();
             }
         });
+
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                final int position = viewHolder.getAdapterPosition();
+                new AlertDialog.Builder(MySessions.this)
+                        .setTitle("Apagar a marcação")
+                        .setMessage("Tens mesmo a certeza que desejas apagar a marcação esta marcação")
+                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                databaseReference.child("marcacoes").child("M-Id8").removeValue();
+                                mySessionsAdapter.notifyItemRemoved(position);
+
+                            }
+                        }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        recreate();
+                    }
+                }).show();
+
+
+            }
+
+            @Override
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+
+                new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive).
+                        addSwipeLeftActionIcon(R.drawable.ic_delete).addSwipeLeftBackgroundColor(getResources().getColor(R.color.dark_red)).create().decorate();
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
     }
 
