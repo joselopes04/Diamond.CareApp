@@ -63,6 +63,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
     TextView textViewDate;
     Button save;
 
+    //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
@@ -249,19 +250,30 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
 
     //Salvar dados que o utilizador introduziu
     public void btnsavedataClicked(View v){
+        //Obter os dados que o utilizador introduziu
         String username = editTextName.getText().toString().trim();
         String useremail = editTextEmail.getText().toString().trim();
         String userphone = editTextPhone.getText().toString().trim();
         String userbirth = textViewDate.getText().toString().trim();
 
-        if (username.isEmpty() || username.length()<2) {
+        //Verificar se os caractres do nome são só letras
+        Pattern p = Pattern.compile("[^a-z]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(username);
+        boolean specialChar = m.find();
+
+        //Verificar dados que o user introduziu
+        if (username.length()<2) {
             editTextName.setError("Por favor insira o seu nome");
+            editTextName.requestFocus();
+            return;
+        }else if(specialChar){
+            editTextName.setError("O seu nome não pode conter números ou caracteres especiais");
             editTextName.requestFocus();
             return;
         }
 
         if (useremail.isEmpty()) {
-            editTextEmail.setError("Por favor insira o seu E-Mail");
+            editTextEmail.setError("Por favor insira o seu email");
             editTextEmail.requestFocus();
             return;
         }
@@ -308,7 +320,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
         }).show();
     }
 
-    //Verificar nº de telefone
+    //Verificar se o num de telefone é válido
     boolean validateMobile(String input){
         String regex = "(9[1236][0-9]) ?([0-9]{3}) ?([0-9]{3})";
         Pattern pattern = Pattern.compile(regex);

@@ -49,7 +49,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -64,36 +63,38 @@ public class Register extends AppCompatActivity {
     EditText editTextName, editTextEmail, editTextPhone, editTextPassword;
     LottieAnimationView progressBar;
     CheckBox checkBox, googleCaptcha;
-    Button btn_regist;
-    TextInputLayout emailLayout, passLayout, nameLayout;
+    Button btn_register;
+    TextInputLayout emailLayout, passLayout, nameLayout, phoneLayout;
 
-
+    //Recaptcha
     String TAG = Register.class.getSimpleName();
     String SECRET_KEY  = "6Lfr3BcgAAAAAIW65JYtB6Aw5tGmkmGtXh2UApSc";
     String SITE_KEY = "6Lfr3BcgAAAAAJFe3HyGyNDaVkr7xAcWXar5971Y";
     RequestQueue queue;
 
-    ArrayList<String> appointments;
     private FirebaseAuth mAuth;
 
     final Handler handler = new Handler(Looper.getMainLooper());
+    //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        btn_regist = (Button) findViewById(R.id.btn_regist);
-        editTextName = (EditText) findViewById(R.id.user_name);
-        nameLayout= (TextInputLayout) findViewById(R.id.textInputLayoutName);
-        editTextEmail = (EditText) findViewById(R.id.user_email);
-        emailLayout = (TextInputLayout) findViewById(R.id.textInputLayoutmail);
-        editTextPhone = (EditText) findViewById(R.id.user_phone);
-        editTextPassword = (EditText) findViewById(R.id.user_password);
-        passLayout = (TextInputLayout) findViewById(R.id.textInputLayoutPass);
+
+        btn_register = findViewById(R.id.btn_regist);
+        editTextName = findViewById(R.id.user_name);
+        nameLayout= findViewById(R.id.textInputLayoutName);
+        editTextEmail = findViewById(R.id.user_email);
+        emailLayout =findViewById(R.id.textInputLayoutmail);
+        editTextPhone = findViewById(R.id.user_phone);
+        phoneLayout = findViewById(R.id.textInputLayoutPhone);
+        editTextPassword = findViewById(R.id.user_password);
+        passLayout = findViewById(R.id.textInputLayoutPass);
         checkBox = findViewById(R.id.checkTerms);
         googleCaptcha = findViewById(R.id.googleCaptcha);
-        progressBar = (LottieAnimationView) findViewById(R.id.progressBarRegist);
+        progressBar =  findViewById(R.id.progressBarRegist);
         queue = Volley.newRequestQueue(getApplicationContext());
 
         mAuth = FirebaseAuth.getInstance();
@@ -105,11 +106,13 @@ public class Register extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
 
+        //Desativar icones de erro nos texts inputs
         nameLayout.setEndIconVisible(false);
         emailLayout.setEndIconVisible(false);
+        phoneLayout.setEndIconVisible(false);
 
         //Link para ecrã de login
-        textViewLogin = (TextView)findViewById(R.id.txt_page);
+        textViewLogin = findViewById(R.id.txt_page);
         textViewLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +121,7 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        textViewTerms = (TextView)findViewById(R.id.textViewTerms);
+        textViewTerms = findViewById(R.id.textViewTerms);
         textViewTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,26 +130,35 @@ public class Register extends AppCompatActivity {
         });
     }
 
-
-
     //Butão Registo
     public void signupButtonClicked(View v){
+        //Obter os dados que o utilizador introduziu
         String txt_user_name = editTextName.getText().toString().trim();
         String txt_user_email = editTextEmail.getText().toString().trim();
         String txt_user_phone = editTextPhone.getText().toString().trim();
         String txt_user_password = editTextPassword.getText().toString().trim();
+        //Ecriptar a password
         String hashedPassword = BCrypt.withDefaults().hashToString(12, txt_user_password.toCharArray() );
 
-        //Verificar informações
+        //Verificar se os caracteres do nome são só letras
+        Pattern p = Pattern.compile("[^a-z]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(txt_user_name);
+        boolean specialChar = m.find();
+
+        //Verificar dados que o user introduziu e se não mostrar os erros no ecrã
         nameLayout.setEndIconVisible(true);
-        if (txt_user_name.isEmpty() || txt_user_name.length()<2){
+        if (txt_user_name.length()<2){
             nameLayout.setError("Por favor insira o seu nome");
             nameLayout.setEndIconDrawable(R.drawable.ic_error);
             return;
-        }else{
-            nameLayout.setEndIconDrawable(R.drawable.ic_check_circle);
-            nameLayout.setError(null);
-        }
+        }else if(specialChar){
+            nameLayout.setError("O seu nome não pode conter números ou caracteres especiais");
+            nameLayout.setEndIconDrawable(R.drawable.ic_error);
+            return;
+        }else {
+                nameLayout.setEndIconDrawable(R.drawable.ic_check_circle);
+                nameLayout.setError(null);
+            }
 
         emailLayout.setEndIconVisible(true);
         if (!Patterns.EMAIL_ADDRESS.matcher(txt_user_email).matches()){
@@ -158,20 +170,18 @@ public class Register extends AppCompatActivity {
             emailLayout.setError(null);
         }
 
-        if (txt_user_phone.isEmpty()) {
-            editTextPhone.setError("Por favor insira o número seu telemóvel");
-            editTextPhone.requestFocus();
-            return;
-        }
-
+        phoneLayout.setEndIconVisible(true);
         if(!validateMobile(txt_user_phone)) {
-            editTextPhone.setError("Por favor insira um número de telemóvel válido");
-            editTextPhone.requestFocus();
+            phoneLayout.setError("Por favor insira número válido");
+            phoneLayout.setEndIconDrawable(R.drawable.ic_error);
             return;
+        }else{
+            phoneLayout.setEndIconDrawable(R.drawable.ic_check_circle);
+            phoneLayout.setError(null);
         }
 
         if (txt_user_password.isEmpty() || txt_user_password.length() < 6 ) {
-            passLayout.setError("Por favor insira uma palavra passe com pelo menos 6 caracters");
+            passLayout.setError("Insira uma palavra passe com pelo menos 6 caracters");
             return;
         }
         else{
@@ -189,7 +199,7 @@ public class Register extends AppCompatActivity {
             return;
         }
 
-        btn_regist.setEnabled(false);
+        btn_register.setEnabled(false);
         editTextName.setEnabled(false);
         editTextEmail.setEnabled(false);
         editTextPhone.setEnabled(false);
@@ -205,7 +215,7 @@ public class Register extends AppCompatActivity {
                   public void onComplete(@NonNull Task<AuthResult> task) {
                       progressBar.setVisibility(View.GONE);
 
-                      btn_regist.setEnabled(true);
+                      btn_register.setEnabled(true);
                       editTextName.setEnabled(true);
                       editTextEmail.setEnabled(true);
                       editTextPhone.setEnabled(true);
@@ -215,9 +225,9 @@ public class Register extends AppCompatActivity {
 
                       if (task.isSuccessful()){
 
+                          //Criar o user na Realtimedatabase
                           String birth ="";
                           User user = new User(txt_user_name,txt_user_email,txt_user_phone,hashedPassword,birth);
-
                           FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
                           .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                           .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -257,7 +267,7 @@ public class Register extends AppCompatActivity {
               });
 
       }
-      //Verificar num de telefone
+      //Verificar se o num de telefone é válido
       boolean validateMobile(String input){
           String regex = "(9[1236][0-9]) ?([0-9]{3}) ?([0-9]{3})";
           Pattern pattern = Pattern.compile(regex);
@@ -265,7 +275,7 @@ public class Register extends AppCompatActivity {
           return matcher.matches();
       }
 
-      //Chamar o alertDialog para mostrar os termos qnd se toca na checkbox
+    //Chamar o alertDialog para mostrar os termos qnd se toca na checkbox
     public void checkTerms(View v){
         showWarningDialog();
     }
@@ -323,8 +333,6 @@ public class Register extends AppCompatActivity {
 
     }
     protected  void handleSiteVerify(final String responseToken){
-        //it is google recaptcha siteverify server
-        //you can place your server url
         String url = "https://www.google.com/recaptcha/api/siteverify";
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -393,17 +401,17 @@ public class Register extends AppCompatActivity {
         toast.show();
     }
 
-    //Desabilitar o butão retroceder durante o registo
+    //Desabilitar o butão de retroceder enquanto a app se está comunicar com as DB
     @Override
     public void onBackPressed() {
-        if(!btn_regist.isEnabled()){
+        if(!btn_register.isEnabled()){
 
         }else{
             super.onBackPressed();
         }
     }
 
-    //Verificar a ligação à internet do user
+    //Verificar ligação á internet do user qnd a app é iniciada
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -411,6 +419,7 @@ public class Register extends AppCompatActivity {
         super.onStart();
     }
 
+    //Parar de verificar ligação á internet do user qnd a app é fechada
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);
