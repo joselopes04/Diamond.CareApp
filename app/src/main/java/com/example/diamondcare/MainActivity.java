@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private long backPressedTime;
     public Button button;
     TextView textView;
-
+    String savedLanguage;
 
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
@@ -53,6 +53,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Se a app não verificou o idioma faz este if se já ignora
+        //Sem este if a app ia estar num loop infinito de verificação do idioma
+        Bundle extras = getIntent().getExtras();
+        if (extras == null){
+            //Verificar o idioma que o user têm selecionado
+            SharedPreferences sharedPreferences = getSharedPreferences(SAVEDLANGUAGE, MODE_PRIVATE);
+            savedLanguage = sharedPreferences.getString(SAVEDLANGUAGE,"");
+            if(savedLanguage.equals("en")){
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("refreshed","yes");
+                setLocal(MainActivity.this, "en");
+                finish();
+                startActivity(intent);
+
+            }else{
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("refreshed","yes");
+                setLocal(MainActivity.this,"pt");
+                finish();
+                startActivity(intent);
+            }
+        }
+
 
         //Fundo animado
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
@@ -65,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView = (ImageView) findViewById(R.id.img_logo);
         imageView.setImageResource(R.drawable.logo_sem_fundo);
 
+        //Se a opção lembrar me foi assinalada abrir a app pela activity animation
         SharedPreferences preferences = getSharedPreferences("Checkbox", MODE_PRIVATE);
         String keep = preferences.getString("remember", "");
         if (keep.equals("ON")){
@@ -92,12 +117,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     //Mostrar o dialog para o user selecionar o idioma
     public void changeLanguageDialog(View v){
         String savedLanguage;
-        int selectLang = 0;
+        int selectLang;
         SharedPreferences sharedPreferences = getSharedPreferences(SAVEDLANGUAGE, MODE_PRIVATE);
         savedLanguage = sharedPreferences.getString(SAVEDLANGUAGE,"");
 
@@ -176,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkChangeListener, filter);
         super.onStart();
+
     }
 
     @Override

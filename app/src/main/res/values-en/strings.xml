@@ -21,7 +21,7 @@
     <string name="phoneField">Enter your mobile number</string>
     <string name="newPasswordField">Enter a password</string>
     <string name="weakPassword">Enter a password with at least 6 characters</string>
-    <string name="acept">I accept the </string>
+    <string name="acept">I accept </string>
     <string name="checkTermsError">Please accept the terms and conditions</string>
     <string name="robot">I am not a robot</string>
     <string name="robotError">You have to confirm that you are not a robot</string>

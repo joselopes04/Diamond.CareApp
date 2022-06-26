@@ -29,7 +29,7 @@
         android:layout_marginTop="65dp"
         android:fontFamily="@font/playfairdisplay_regular"
         android:gravity="center"
-        android:text="Seja Bem-Vindo"
+        android:text="@string/Welcome"
         android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
