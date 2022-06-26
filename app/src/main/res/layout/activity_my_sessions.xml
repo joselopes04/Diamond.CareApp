@@ -23,7 +23,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Minhas Marcações"
+                android:text="@string/myAppointments"
                 android:textColor="#fff"
                 android:textSize="21dp"
                 android:textStyle="bold" />
@@ -34,7 +34,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aqui pode gerir as suas marcações"
+            android:text="@string/appointmentsInfo"
             android:textSize="18dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"

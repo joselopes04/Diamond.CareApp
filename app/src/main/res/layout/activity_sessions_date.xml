@@ -53,7 +53,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="20dp"
-                android:text="Dia selecionado:"
+                android:text="@string/selectedDay"
                 android:textColor="#fff"
                 android:textSize="21dp"
                 android:textStyle="bold" />
@@ -65,7 +65,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
-                android:text="Toque para selecionar"
+                android:text="@string/touchToAdd"
                 android:textColor="@color/white"
                 android:textSize="21dp"
                 android:textStyle="bold" />
@@ -86,7 +86,7 @@
                     android:layout_width="180dp"
                     android:layout_height="60dp"
                     android:enabled="false"
-                    android:text="Anterior"
+                    android:text="@string/previous"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -95,7 +95,7 @@
                     android:layout_width="180dp"
                     android:layout_height="60dp"
                     android:enabled="false"
-                    android:text="Seguinte"
+                    android:text="@string/next"
                     android:onClick="setBtn_next3Clicked"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />

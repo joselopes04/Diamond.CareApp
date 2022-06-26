@@ -36,15 +36,10 @@ import java.util.Calendar;
 public class Home extends AppCompatActivity {
 
     private long backPressedTime;
-    private Toast backToast;
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userID;
 
-    public static final String KEY_ISNIGHTMODE = "isNightMode";
-    public static final String MyPREFERENCES = "nightModePrefs";
-
-    SharedPreferences sharedPreferences;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -58,7 +53,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setUpToolbar();
 
-        //Menu
+        //Menu de navegação
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setCheckedItem(R.id.nav_home);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -105,7 +100,6 @@ public class Home extends AppCompatActivity {
                 }
                 return true;
 
-
             }
         });
 
@@ -113,7 +107,7 @@ public class Home extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         userID = user.getUid();
 
-        final TextView welcomeTextView = (TextView) findViewById(R.id.welcome);
+        final TextView welcomeTextView = findViewById(R.id.welcome);
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -123,31 +117,31 @@ public class Home extends AppCompatActivity {
 
                 Calendar calendar = Calendar.getInstance();
                 int Hours = calendar.get(Calendar.HOUR_OF_DAY);
-                String greeting = "Olá ";
+                String greeting = getString(R.string.greetings);
 
                 if (Hours > 0 && Hours<=4){
-                    greeting = "Boa noite ";
+                    greeting = getString(R.string.night);
                 }
                 if (Hours > 4 && Hours<=12) {
-                    greeting = "Bom dia ";
+                    greeting = getString(R.string.day);
                 }
                 if (Hours > 12 && Hours<=19) {
-                    greeting = "Boa tarde ";
+                    greeting = getString(R.string.noon);
                 }
                 if(Hours > 19){
-                    greeting = "Boa noite ";
+                    greeting = getString(R.string.night);
                 }
 
                 if (userprofile != null){
                     String name = userprofile.name;
-                    welcomeTextView.setText(  greeting + name +" !");
+                    welcomeTextView.setText(  greeting+ " " + name +" !");
                 }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Home.this, "Algo correu mal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, getString(R.string.errorToast), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -188,7 +182,7 @@ public class Home extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_normal, (ViewGroup) findViewById(R.id.toast_normal_layout));
         TextView toastText = layout.findViewById(R.id.toast_normal_txt);
-        toastText.setText("Pressione novamente para sair");
+        toastText.setText(getString(R.string.backToast));
         Toast backToast = new Toast(getApplicationContext());
         backToast.setGravity(Gravity.CENTER, 0, 700);
         backToast.setDuration(Toast.LENGTH_SHORT);

@@ -141,18 +141,18 @@ public class Register extends AppCompatActivity {
         String hashedPassword = BCrypt.withDefaults().hashToString(12, txt_user_password.toCharArray() );
 
         //Verificar se os caracteres do nome são só letras
-        Pattern p = Pattern.compile("[^a-z]", Pattern.CASE_INSENSITIVE);
-        Matcher m = p.matcher(txt_user_name);
+        Pattern special = Pattern.compile ("[0-9!@#$%&*()_+=|<>?{}\\[\\]-]", Pattern.CASE_INSENSITIVE);
+        Matcher m = special.matcher(txt_user_name);
         boolean specialChar = m.find();
 
         //Verificar dados que o user introduziu e se não mostrar os erros no ecrã
         nameLayout.setEndIconVisible(true);
         if (txt_user_name.length()<2){
-            nameLayout.setError("Por favor insira o seu nome");
+            nameLayout.setError(getString(R.string.insertName));
             nameLayout.setEndIconDrawable(R.drawable.ic_error);
             return;
         }else if(specialChar){
-            nameLayout.setError("O seu nome não pode conter números ou caracteres especiais");
+            nameLayout.setError(getString(R.string.invalidName));
             nameLayout.setEndIconDrawable(R.drawable.ic_error);
             return;
         }else {
@@ -160,9 +160,14 @@ public class Register extends AppCompatActivity {
                 nameLayout.setError(null);
             }
 
+
         emailLayout.setEndIconVisible(true);
-        if (!Patterns.EMAIL_ADDRESS.matcher(txt_user_email).matches()){
-            emailLayout.setError("Por favor insira um endereço de email válido");
+        if (txt_user_email.isEmpty()) {
+            editTextEmail.setError(getString(R.string.insertEmail));
+            editTextEmail.requestFocus();
+            return;
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(txt_user_email).matches()){
+            emailLayout.setError(getString(R.string.invalidEmail));
             emailLayout.setEndIconDrawable(R.drawable.ic_error);
             return;
         }else{
@@ -171,8 +176,13 @@ public class Register extends AppCompatActivity {
         }
 
         phoneLayout.setEndIconVisible(true);
-        if(!validateMobile(txt_user_phone)) {
-            phoneLayout.setError("Por favor insira número válido");
+
+        if (txt_user_phone.isEmpty()) {
+            editTextPhone.setError(getString(R.string.insertPhone));
+            editTextPhone.requestFocus();
+            return;
+        }else if(!validateMobile(txt_user_phone)) {
+            phoneLayout.setError(getString(R.string.invalidPhone));
             phoneLayout.setEndIconDrawable(R.drawable.ic_error);
             return;
         }else{
@@ -181,20 +191,20 @@ public class Register extends AppCompatActivity {
         }
 
         if (txt_user_password.isEmpty() || txt_user_password.length() < 6 ) {
-            passLayout.setError("Insira uma palavra passe com pelo menos 6 caracters");
+            passLayout.setError(getString(R.string.weakPassword));
             return;
         }
         else{
             passLayout.setError(null);
         }
         if(!checkBox.isChecked()){
-            String toastcontent = "Por favor aceite os termos e condições";
+            String toastcontent = getString(R.string.checkTermsError);
             ToastError(toastcontent);
             return;
         }
 
         if(!googleCaptcha.isChecked()){
-            String toastcontent = "Têm que confirmar que não é um robot";
+            String toastcontent = getString(R.string.robotError);
             ToastError(toastcontent);
             return;
         }
@@ -235,7 +245,7 @@ public class Register extends AppCompatActivity {
                               public void onComplete(@NonNull Task<Void> task) {
                                   if (task.isSuccessful()){
 
-                                      String toastcontent = "Foi registado com sucesso";
+                                      String toastcontent = getString(R.string.registerToast);
                                       ToastSuccess(toastcontent);
 
                                       //Delay
@@ -250,7 +260,7 @@ public class Register extends AppCompatActivity {
                                   }
                                   else{
 
-                                      String toastcontent = "Algo correu mal ..., por favor tente novamente.";
+                                      String toastcontent = getString(R.string.errorToast);
                                       ToastError(toastcontent);
                                   }
                               }
@@ -258,7 +268,7 @@ public class Register extends AppCompatActivity {
                           });
 
                       } else{
-                          String toastcontent = "Já existe uma conta associada a esse E-mail";
+                          String toastcontent = getString(R.string.emailAlready);
                           ToastError(toastcontent);
 
                       }

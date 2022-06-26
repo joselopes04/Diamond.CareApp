@@ -1,6 +1,37 @@
 <resources>
     <string name="app_name" translatable="false">Diamond Care</string>
 
+    <!--Main Activity-->
+    <string name="Welcome">Seja Bem-Vindo</string>
+    <string name="createAccount">Criar conta</string>
+
+    <!--Login-->
+    <string name="loginTitle">Faça o Login</string>
+    <string name="emailField">Insira o seu e-mail</string>
+    <string name="passwordField">Insira a palavra-passe</string>
+    <string name="forgotPassword">Esqueceu-se da palavra-passe</string>
+    <string name="btnLogin">ENTRAR</string>
+    <string name="remember">Lembrar-me</string>
+    <string name="registerLink">Não têm conta? Registe-se</string>
+    <string name="wrongPassword">Email ou password incorretos</string>
+
+    <!--Register-->
+    <string name="registerTitle">Registe-se</string>
+    <string name="nameField">Insira o seu Nome</string>
+    <string name="phoneField">Insira o seu nº telemóvel</string>
+    <string name="newPasswordField">Insira uma palavra-passe</string>
+    <string name="weakPassword">Insira uma palavra passe com pelo menos 6 caracters</string>
+    <string name="acept">Aceito os </string>
+    <string name="checkTermsError">Por favor aceite os termos e condições</string>
+    <string name="robot">Não sou um robot</string>
+    <string name="robotError">Têm que confirmar que não é um robot</string>
+    <string name="loginLink">Já têm conta? Faça o Login</string>
+
+
+
+    <!--Animation-->
+    <string name="loading">Loading…</string>
+
     <!--Menu Hamburguer-->
     <string name="shareAppTitle">Partilhe a app</string>
     <string name="menu_drawer_open">Abrir menu</string>
@@ -12,17 +43,92 @@
     <string name="pointsTitle">Pontos</string>
     <string name="settingsTitle">Definições</string>
 
+    <!--Home-->
+    <string name="greetings">Olá</string>
+    <string name="night">Boa noite</string>
+    <string name="day">Bom dia</string>
+    <string name="noon">Boa tarde</string>
+
+    <!--Cards-->
+    <string name="myProfileCardTitle">Ver o meu Perfil</string>
+    <string name="sessionsCardTitle">Marcar corte</string>
+    <string name="appointmentsCardTitle">Marcações</string>
+
+    <!--MyProfile-->
+    <string name="name">Nome:</string>
+    <string name="email">E-mail:</string>
+    <string name="phone">Telemóvel:</string>
+    <string name="birthday">Data de nascimento</string>
+    <string name="touchToAdd">Toque para adicionar</string>
+    <string name="btnSave">Salvar</string>
+    <string name="btnLeave">Sair da conta</string>
+    <string name="insertName">Por favor insira o seu nome</string>
+    <string name="invalidName">O seu nome não pode conter números ou caracteres especiais</string>
+    <string name="insertEmail">Por favor insira o seu email</string>
+    <string name="invalidEmail">Por favor insira um endereço de email válido</string>
+    <string name="insertPhone">Por favor insira o número seu telemóvel</string>
+    <string name="invalidPhone">Por favor insira um número de telemóvel válido</string>
+    <string name="insertPassword">Por favor insira a sua palavra passe</string>
+
+    <!--AlertDialogs My profile-->
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="changesTitle">Confirmar alterações</string>
+    <string name="changesMessage">Tens mesmo a certeza que desejas alterar os dados da tua conta?</string>
+    <string name="resetPasswordTitle">Repor Palavra-Passe</string>
+    <string name="resetPasswordMessage">Tens mesmo a certeza que desejas alterar os dados da tua conta?</string>
+    <string name="deleteAccountTitle">Apagar a conta</string>
+    <string name="deleteAccountMessage">Tens mesmo a certeza que queres apagar a tua conta, esta ação e irreversível! Iremos sentir muito a sua falta :(</string>
+    <string name="logoutTitle">Terminar sessão</string>
+    <string name="logoutMessage">Tens mesmo a certeza que desejas terminar sessão?</string>
+    <string name="backTitle">Voltar</string>
+    <string name="backMessage">Queres voltar atrás ? Todos os dados não guardados serão perdidos!</string>
+    <string name="bookingTitle">Criar marcação</string>
+    <string name="bookingMessage">Tens mesmo a certeza que desejas realizar a marcação?</string>
+
+    <!--MyProfile Menu-->
+    <string name="editAccount">Editar conta</string>
+    <string name="resetPassword">Repor palavra-passe</string>
+    <string name="deleteAccount">Apagar conta</string>
+
+    <!--Sessions-->
+    <string name="selectedDay">Dia selecionado:</string>
+    <string name="hour">Hora: </string>
+    <string name="date">Data: </string>
+    <string name="finish">Concluir</string>
+    <string name="confirm">Confirmar</string>
+    <string name="myAppointments">Minhas marcações</string>
+    <string name="appointmentsInfo">Aqui pode gerir as suas marcações</string>
+
     <!--Settings-->
     <string name="themeTitle">Tema da aplicação</string>
     <string name="themeDesc">O tema da aplicação é definido automáticamnete de acordo com o tema do seu dispositivo.</string>
     <string name="spinnerTitle">Idioma</string>
+    <string name="languageDialog">Selecionar idioma</string>
+    <string name="language">Português</string>
 
-    <!--Partilhar a app-->
+    <!--Toasts-->
+    <string name="successChangesToast">Alterações realizadas com sucesso</string>
+    <string name="successResetPasswordToast">Verifique o seu email</string>
+    <string name="deleteAccountToast">Conta apagada com sucesso</string>
+    <string name="logoutToast">Saiu da conta com sucesso</string>
+    <string name="errorToast">Algo correu mal…</string>
+    <string name="backToast">Pressione novamente para sair</string>
+    <string name="registerToast">Foi registado com sucesso</string>
+    <string name="emailAlready">Já existe uma conta associada a esse E-mail</string>
+
+
+    <!--Share the app-->
     <string name="shareTitle">Partilhar com:</string>
     <string name="shareBody">"Hey eu estou a adorar usar a app Diamond Care. Com ela ganho muitos DESCONTOS em cortes de cabelo. Aqui está o link para download</string>
     <string name="shareSub">"Exprimenta já!"</string>
 
-    <!--Termos e condições-->
+    <!--Internet Connection-->
+    <string name="error">Erro</string>
+    <string name="noNetworkConnection">Não há ligação há internet</string>
+    <string name="btnTryAgain">Tentar novamente</string>
+
+    <!--Terms and Conditions-->
     <string name="termsConditions">Termos e condições</string>
     <string name="termsConditionsDesc">Clique para consultar os Termos e condições</string>.
 
@@ -68,8 +174,8 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="next">Seguinte</string>
+    <string name="previous">Anterior</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

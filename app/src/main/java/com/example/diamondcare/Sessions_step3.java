@@ -176,8 +176,8 @@ public class Sessions_step3 extends AppCompatActivity {
     //Defenir os steps no topo do ecrã
     private void setUpSetView() {
         List<String> stepList = new ArrayList<>();
-        stepList.add("Data");
-        stepList.add("Confirmar");
+        stepList.add(getString(R.string.date));
+        stepList.add(getString(R.string.confirm));
         stepView.setSteps(stepList);
         stepView.go(1,true);
     }
@@ -207,9 +207,9 @@ public class Sessions_step3 extends AppCompatActivity {
     //Butão para realizar a marcação
     public void btn_concluir3Clicked(View v){
         new AlertDialog.Builder(Sessions_step3.this)
-                .setTitle("Marcar sessão")
-                .setMessage("Tens mesmo a certeza que desejas realizar a marcação?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.bookingTitle))
+                .setMessage(getString(R.string.bookingMessage))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String date = "Erro";
@@ -248,19 +248,19 @@ public class Sessions_step3 extends AppCompatActivity {
                                     LayoutInflater inflater = getLayoutInflater();
                                     View layout = inflater.inflate(R.layout.toast_error, (ViewGroup) findViewById(R.id.toast_error_layout));
                                     TextView toastText = layout.findViewById(R.id.toast_error_txt);
-                                    toastText.setText("Algo correu mal ..., por favor tente novamente.");
+                                    toastText.setText(getString(R.string.errorToast));
                                     Toast toast = new Toast(getApplicationContext());
                                     toast.setGravity(Gravity.CENTER, 0, 0);
                                     toast.setDuration(Toast.LENGTH_SHORT);
                                     toast.setView(layout);
                                     toast.show();
-                                    Toast.makeText(Sessions_step3.this, "Algo correu mal...", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Sessions_step3.this, (getString(R.string.errorToast)), Toast.LENGTH_SHORT).show();
                                 }
 
                             }
                         });
                     }
-                }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }

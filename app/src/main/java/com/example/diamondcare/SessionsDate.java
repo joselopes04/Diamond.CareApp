@@ -249,8 +249,8 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
 
     private void setUpSetView() {
         List<String> stepList = new ArrayList<>();
-        stepList.add("Data");
-        stepList.add("Confirmar");
+        stepList.add(getString(R.string.date));
+        stepList.add(getString(R.string.confirm));
         stepView.setSteps(stepList);
         stepView.go(0,true);
     }

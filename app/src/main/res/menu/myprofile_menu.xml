@@ -3,16 +3,16 @@
 
     <item android:id="@+id/menu_edit_profile"
         android:icon="@drawable/ic_edit"
-        android:title="Editar conta"/>
+        android:title="@string/editAccount"/>
 
     <item
         android:id="@+id/menu_edit_password"
         android:icon="@drawable/ic_lock_reset"
-        android:title="Repor palavra-passe"/>
+        android:title="@string/resetPassword"/>
 
     <item
         android:id="@+id/menu_delete_account"
         android:icon="@drawable/ic_delete"
-        android:title="Apagar conta"/>
+        android:title="@string/deleteAccount"/>
 
 </menu>

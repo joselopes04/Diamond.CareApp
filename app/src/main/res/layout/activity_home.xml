@@ -76,7 +76,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Ver meu Perfil"
+                            android:text="@string/myProfileCardTitle"
                             android:textSize="18dp"
                             android:textColor="@color/black"/>
                     </LinearLayout>
@@ -108,7 +108,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Marcar corte"
+                            android:text="@string/sessionsCardTitle"
                             android:textSize="18dp"
                             android:textColor="@color/black"/>
                     </LinearLayout>
@@ -139,7 +139,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Marcações"
+                            android:text="@string/appointmentsCardTitle"
                             android:textSize="18dp"
                             android:textColor="@color/black"/>
                     </LinearLayout>
@@ -171,7 +171,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Pontos"
+                            android:text="@string/pointsTitle"
                             android:textSize="18dp"
                             android:textColor="@color/black"/>
                     </LinearLayout>

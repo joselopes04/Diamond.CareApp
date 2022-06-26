@@ -42,7 +42,7 @@
         android:layout_marginTop="36dp"
         android:background="@drawable/gradient_button"
         android:fontFamily="@font/playfairdisplay_regular"
-        android:text="LOGIN"
+        android:text="@string/btnLogin"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,12 +55,44 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/playfairdisplay_regular"
         android:gravity="center"
-        android:text="Criar Conta"
+        android:text="@string/createAccount"
         android:textColor="#CAE4F1"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_main" />
+
+
+    <TextView
+        android:id="@+id/txtViewLanguage"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:dropDownVerticalOffset="35dp"
+        android:gravity="center"
+        android:onClick="changeLanguageDialog"
+        android:text="@string/language"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_regist"
+        app:layout_constraintVertical_bias="0.128" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_arrow_drop_down"
+        app:layout_constraintBottom_toBottomOf="@+id/txtViewLanguage"
+        app:layout_constraintStart_toEndOf="@+id/txtViewLanguage"
+        app:layout_constraintTop_toTopOf="@+id/txtViewLanguage"
+        android:onClick="changeLanguageDialog"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

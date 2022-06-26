@@ -99,7 +99,7 @@ public class Login extends AppCompatActivity {
         emailLayout.setEndIconVisible(true);
 
         if (!Patterns.EMAIL_ADDRESS.matcher(userMail).matches()){
-            emailLayout.setError("Por favor insira um endereço de email válido");
+            emailLayout.setError(getString(R.string.invalidEmail));
             emailLayout.setEndIconDrawable(R.drawable.ic_error);
             return;
         }else{
@@ -108,7 +108,7 @@ public class Login extends AppCompatActivity {
         }
 
         if (editTextPassword.length() == 0){
-            passLayout.setError("Por favor coloque a sua palavra passe");
+            passLayout.setError(getString(R.string.insertPassword));
             return;
         }
         else{
@@ -146,7 +146,7 @@ public class Login extends AppCompatActivity {
                     LayoutInflater inflater = getLayoutInflater();
                     View layout = inflater.inflate(R.layout.toast_error, (ViewGroup) findViewById(R.id.toast_error_layout));
                     TextView toastText = layout.findViewById(R.id.toast_error_txt);
-                    toastText.setText("Email ou password incorretos");
+                    toastText.setText(getString(R.string.wrongPassword));
                     Toast toast = new Toast(getApplicationContext());
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.setDuration(Toast.LENGTH_SHORT);
@@ -166,7 +166,6 @@ public class Login extends AppCompatActivity {
         });
 
         //Manter iniciada a conta do utilizador
-
                 if (remenber.isChecked()){
                     SharedPreferences preferences = getSharedPreferences("Checkbox", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();

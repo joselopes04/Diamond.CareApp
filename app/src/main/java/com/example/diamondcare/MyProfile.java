@@ -79,10 +79,10 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
         Day = calendar.get(Calendar.DAY_OF_MONTH);
 
         save = findViewById(R.id.btn_save);
-        editTextName = (EditText) findViewById(R.id.txtName);
-        editTextEmail = (EditText) findViewById(R.id.txtMail);
-        editTextPhone = (EditText) findViewById(R.id.txtPhone);
-        textViewDate = (TextView) findViewById(R.id.text_date);
+        editTextName = findViewById(R.id.txtName);
+        editTextEmail = findViewById(R.id.txtMail);
+        editTextPhone = findViewById(R.id.txtPhone);
+        textViewDate = findViewById(R.id.text_date);
 
         //Menu de navegação
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
@@ -129,7 +129,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
         });
 
 
-        //Mostrar os dados do user
+        //Mostrar os dados do user no ecrã
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         userID =  user.getUid();
@@ -161,7 +161,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                String toastcontent = "Algo correu mal ..., por favor tente novamente.";
+                String toastcontent = getString(R.string.errorToast);
                 ToastError(toastcontent);
 
             }
@@ -169,12 +169,13 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
 
     }
 
-    //Date Picker
+    //Mostrar o Date Picker
     public void txtDataClicked(View v){
             datePickerDialog = DatePickerDialog.newInstance(MyProfile.this, Year, Month, Day);
             datePickerDialog.setThemeDark(true);
             datePickerDialog.showYearPickerFirst(false);
-            datePickerDialog.setTitle("Data de nascimento");
+            datePickerDialog.setTitle(getString(R.string.birthday));
+//            datePickerDialog.setLocale();
 
             Calendar min_date = Calendar.getInstance();
             min_date.set(Calendar.YEAR, Year-100);
@@ -203,7 +204,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
         actionBarDrawerToggle.syncState();
     }
 
-    //Menu com os 3 pontos
+    //Mostar o menu com os 3 pontos
     public void dotsMenuClicked(View v){
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.setOnMenuItemClickListener(this);
@@ -211,7 +212,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
         popupMenu.show();
     }
 
-    //Opções do menu
+    //Opções do menu dos 3 pontos
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
 
@@ -257,49 +258,49 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
         String userbirth = textViewDate.getText().toString().trim();
 
         //Verificar se os caractres do nome são só letras
-        Pattern p = Pattern.compile("[^a-z]", Pattern.CASE_INSENSITIVE);
-        Matcher m = p.matcher(username);
+        Pattern special = Pattern.compile ("[0-9!@#$%&*()_+=|<>?{}\\[\\]-]", Pattern.CASE_INSENSITIVE);
+        Matcher m = special.matcher(username);
         boolean specialChar = m.find();
 
         //Verificar dados que o user introduziu
         if (username.length()<2) {
-            editTextName.setError("Por favor insira o seu nome");
+            editTextName.setError(getString(R.string.insertName));
             editTextName.requestFocus();
             return;
         }else if(specialChar){
-            editTextName.setError("O seu nome não pode conter números ou caracteres especiais");
+            editTextName.setError(getString(R.string.invalidName));
             editTextName.requestFocus();
             return;
         }
 
         if (useremail.isEmpty()) {
-            editTextEmail.setError("Por favor insira o seu email");
+            editTextEmail.setError(getString(R.string.insertEmail));
             editTextEmail.requestFocus();
             return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(useremail).matches()){
-            editTextEmail.setError("Por favor insira um endereço de email válido");
+            editTextEmail.setError(getString(R.string.invalidEmail));
             editTextEmail.requestFocus();
             return;
         }
 
         if (userphone.isEmpty()) {
-            editTextPhone.setError("Por favor insira o número seu telemóvel");
+            editTextPhone.setError(getString(R.string.insertPhone));
             editTextPhone.requestFocus();
             return;
         }
 
         if(!validateMobile(userphone)) {
-            editTextPhone.setError("Por favor insira um número de telemóvel válido");
+            editTextPhone.setError(getString(R.string.invalidPhone));
             editTextPhone.requestFocus();
             return;
         }
 
         new AlertDialog.Builder(MyProfile.this)
-                .setTitle("Confirmar alterações")
-                .setMessage("Tens mesmo a certeza que desejas alterar os dados da tua conta?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.changesTitle))
+                .setMessage(getString(R.string.changesMessage))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -312,7 +313,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                         textViewDate.setEnabled(false);
 
                     }
-                }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -346,11 +347,11 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                     //atualizar o email de no mAuth
                     user.updateEmail(useremail);
 
-                    String toastcontent = "Alterações realizadas com sucesso";
+                    String toastcontent = getString((R.string.successChangesToast));
                     ToastSuccess(toastcontent);
 
                 }else{
-                    String toastcontent = "Algo correu mal...";
+                    String toastcontent = getString((R.string.errorToast));
                     ToastError(toastcontent);
 
                 }
@@ -361,9 +362,9 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
     //Mandar email para repor a pass
     public void resetPassword(){
         new AlertDialog.Builder(MyProfile.this)
-                .setTitle("Repor Palavra-Passe")
-                .setMessage("Tens mesmo a certeza que desejas repor a tua palavra-passe?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.resetPasswordTitle))
+                .setMessage(getString(R.string.resetPasswordMessage))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String useremail = editTextEmail.getText().toString().trim();
@@ -373,17 +374,17 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()){
-                                            String toastcontent = "Verifique o seu E-mail";
+                                            String toastcontent = getString(R.string.successResetPasswordToast);
                                             ToastSuccess(toastcontent);
                                         }
                                         else {
-                                            String toastcontent = "Falha ao resetar a palavra-passe. Tente novamente...";
+                                            String toastcontent = getString(R.string.errorToast);
                                             ToastError(toastcontent);
                                         }
                                     }
                                 });
                     }
-                }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -394,9 +395,9 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
     //apagar a conta do user
     public void deleteUser(){
         new AlertDialog.Builder(MyProfile.this)
-                .setTitle("Apagar a conta")
-                .setMessage("Tens mesmo a certeza que queres apagar a tua conta, esta ação e irreversível! Iremos sentir muito a sua falta :(")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.deleteAccount))
+                .setMessage(getString(R.string.deleteAccountMessage))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         user.delete()
@@ -415,21 +416,21 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                                             editor.putString("remember", "OFF");
                                             editor.apply();
 
-                                            String toastcontent = "Conta apagada com sucesso";
+                                            String toastcontent = getString(R.string.deleteAccountToast);
                                             ToastSuccess(toastcontent);
 
                                             Intent intentHome = new Intent(MyProfile.this, MainActivity.class);
                                             startActivity(intentHome);
 
                                         }else{
-                                            String toastcontent = "Falha ao apagar a conta. Tente novamente... ";
+                                            String toastcontent = getString(R.string.errorToast);
                                             ToastError(toastcontent);
                                         }
                                     }
                                 });
 
                     }
-                }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -441,9 +442,9 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
     //Sair da conta
     public void btnlogoutnClicked(View v){
         new AlertDialog.Builder(MyProfile.this)
-                .setTitle("Terminar sessão")
-                .setMessage("Tens mesmo a certeza que desejas terminar sessão?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.logoutTitle))
+                .setMessage(getString(R.string.logoutMessage))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
@@ -453,13 +454,13 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                         editor.putString("remember", "OFF");
                         editor.apply();
 
-                        String toastcontent = "Saiu da conta com sucesso";
+                        String toastcontent = getString(R.string.logoutToast);
                         ToastSuccess(toastcontent);
 
                         Intent intentHome = new Intent(MyProfile.this, MainActivity.class);
                         startActivity(intentHome);
                     }
-                }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
@@ -469,18 +470,18 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
     //Butão back
     @Override
     public void onBackPressed() {
+        //Perguntar ao user se quer msm voltar atras se ainda não salcou os dados
         if(save.getVisibility() == View.VISIBLE){
             new AlertDialog.Builder(MyProfile.this)
-                    .setTitle("Voltar")
-                    .setMessage("Queres voltar atrás ? " +
-                            "Todos os dados não guardados serão perdidos!")
-                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    .setTitle(getString(R.string.backTitle))
+                    .setMessage(getString(R.string.backMessage))
+                    .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intentHome = new Intent(MyProfile.this, Home.class);
                             startActivity(intentHome);
                         }
-                    }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 

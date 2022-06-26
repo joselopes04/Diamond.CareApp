@@ -3,11 +3,15 @@ package com.example.diamondcare;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -33,13 +37,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String SAVEDLANGUAGE = "Language";
     private long backPressedTime;
-    private Toast backToast;
     public Button button;
     TextView textView;
+
 
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
@@ -88,13 +94,69 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Mostrar o dialog para o user selecionar o idioma
+    public void changeLanguageDialog(View v){
+        String savedLanguage;
+        int selectLang = 0;
+        SharedPreferences sharedPreferences = getSharedPreferences(SAVEDLANGUAGE, MODE_PRIVATE);
+        savedLanguage = sharedPreferences.getString(SAVEDLANGUAGE,"");
+
+        //Selecionar a opção que o user tinha escolhida anteriormente
+        if(savedLanguage.equals("en")){
+            selectLang = 1;
+        }else{
+            selectLang = 0;
+        }
+
+        String[] languages = {"Portugês", "English"};
+        new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
+                .setTitle(getString(R.string.languageDialog))
+                .setSingleChoiceItems(languages, selectLang, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String selected = languages[i];
+                        if(selected.equals("Portugês")){
+                            setLocal(MainActivity.this,"pt");
+                            finish();
+                            startActivity(getIntent());
+
+                        }else if (selected.equals("English")){
+                            setLocal(MainActivity.this, "en");
+                            finish();
+                            startActivity(getIntent());
+                        }
+                    }
+                })
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                }).show();
+    }
+
+    //Selecionar o idioma
+    public void setLocal(Activity activity, String lanCode){
+        Locale locale = new Locale(lanCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+        SharedPreferences sharedPreferences = getSharedPreferences(SAVEDLANGUAGE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String language = Locale.getDefault().getLanguage();
+        editor.putString(SAVEDLANGUAGE, language);
+        editor.commit();
+    }
+
+
     @Override
     public void onBackPressed() {
 
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_normal, (ViewGroup) findViewById(R.id.toast_normal_layout));
         TextView toastText = layout.findViewById(R.id.toast_normal_txt);
-        toastText.setText("Pressione novamente para sair");
+        toastText.setText(getString(R.string.backToast));
         Toast backToast = new Toast(getApplicationContext());
         backToast.setGravity(Gravity.CENTER, 0, 700);
         backToast.setDuration(Toast.LENGTH_SHORT);

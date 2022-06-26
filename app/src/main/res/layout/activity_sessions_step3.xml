@@ -46,7 +46,7 @@
             android:layout_marginTop="40dp"
             android:gravity="center"
             android:textSize="25dp"
-            android:text="Data:"/>
+            android:text="@string/date"/>
 
         <TextView
             android:id="@+id/textViewData"
@@ -64,7 +64,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:textSize="22dp"
-            android:text="Hora:"/>
+            android:text="@string/hour"/>
 
         <TextView
             android:id="@+id/textViewHora"
@@ -88,7 +88,7 @@
             android:layout_height="60dp"
             android:enabled="true"
             android:onClick="btn_concluir3Clicked"
-            android:text="Concluir"
+            android:text="@string/finish"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -97,7 +97,7 @@
             android:enabled="true"
             android:layout_width="180dp"
             android:layout_height="60dp"
-            android:text="Anterior"
+            android:text="@string/previous"
             android:onClick="btn_prev3Clicked"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

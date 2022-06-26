@@ -61,16 +61,16 @@ public class ForgotPassword extends AppCompatActivity {
 
     private void resetPassword(){
         new AlertDialog.Builder(ForgotPassword.this)
-                .setTitle("Repor Palavra-Passe")
-                .setMessage("Tens mesmo a certeza que desejas repor a tua palavra-passe?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.resetPasswordTitle))
+                .setMessage(getString(R.string.resetPasswordMessage))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                         String txt_email_rec = edit_text_email_rec.getText().toString().trim();
 
                         if (!Patterns.EMAIL_ADDRESS.matcher(txt_email_rec).matches()){
-                            edit_text_email_rec.setError("Por favor insira um endereço de email válido");
+                            edit_text_email_rec.setError(getString(R.string.invalidEmail));
                             edit_text_email_rec.requestFocus();
                             return;
                         }
@@ -80,7 +80,7 @@ public class ForgotPassword extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
 
                                 if (task.isSuccessful()){
-                                    String toastcontent = "Verifique o seu E-mail";
+                                    String toastcontent = getString(R.string.successResetPasswordToast);
                                     ToastSuccess(toastcontent);
 
                                     //Delay
@@ -95,14 +95,14 @@ public class ForgotPassword extends AppCompatActivity {
 
                                 }
                                 else {
-                                    String toastcontent = "Falha ao resetar a palavra-passe. Tente novamente...";
+                                    String toastcontent = getString(R.string.errorToast);
                                     ToastError(toastcontent);
                                 }
                             }
                         });
 
                     }
-                }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

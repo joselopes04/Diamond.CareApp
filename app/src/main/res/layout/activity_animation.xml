@@ -43,7 +43,7 @@
         android:layout_height="22dp"
         android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:text="A carregar ..."
+        android:text="@string/loading"
         android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView"
         app:layout_constraintEnd_toEndOf="parent"

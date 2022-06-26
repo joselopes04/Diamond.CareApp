@@ -14,14 +14,17 @@
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_launcher3_background.xml" value="0.177" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_policy.xml" value="0.246" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/ic_wifi_off.xml" value="0.236" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/spiiner_background.xml" value="0.1235" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/spinner_background.xml" value="0.1235" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/toast_error_background.xml" value="0.177" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/toast_normal_background.xml" value="0.177" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/toast_sucess_background.xml" value="0.177" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/toogle_selector.xml" value="0.177" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/drawable/transperent_edittxt.xml" value="0.8" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/activity_animation.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/activity_forgot_password.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/activity_home.xml" value="0.24547101449275363" />
-        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/activity_login.xml" value="0.536" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/activity_main.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/activity_my_profile.xml" value="0.264" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/activity_my_sessions.xml" value="0.20863616930312098" />
@@ -41,6 +44,7 @@
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/header.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/layout_barber.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/single_sessions.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/spinner_background.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/terms_and_conditions.xml" value="0.3674698795180723" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/time_slot.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/DiamondCare/app/src/main/res/layout/toast_error.xml" value="0.18510928961748635" />

@@ -2,6 +2,7 @@ package com.example.diamondcare;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -13,10 +14,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -36,14 +36,10 @@ public class Settings extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
-    Spinner spinner;
-    String text = "Idioma-Language";
+    public static final String SAVEDLANGUAGE = "Language";
 
-    Switch switch_theme;
+    TextView txtViewLanguage;
 
-    public static final String KEY_ISNIGHTMODE = "isNightMode";
-    public static final String MyPREFERENCES = "nightModePrefs";
-    SharedPreferences sharedPreferences;
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
@@ -51,22 +47,11 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        spinner = findViewById(R.id.languageSelector);
+        txtViewLanguage = findViewById(R.id.txtViewLanguage);
 
         setUpToolbar();
 
-//        switch_theme = findViewById(R.id.switch_theme);
-//        sharedPreferences = getSharedPreferences("night", 0);
-//        Boolean booleanValue = sharedPreferences.getBoolean("night_mode", true);
-//        if(booleanValue){
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//            switch_theme.setChecked(true);
-//        }else{
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//            switch_theme.setChecked(false);
-//        }
-
-        navigationView = (NavigationView) findViewById(R.id.navigation_menu);
+        navigationView = findViewById(R.id.navigation_menu);
         navigationView.setCheckedItem(R.id.nav_settings);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -115,64 +100,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-
-
-//        switch_theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked){
-//                    getDelegate().setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//                    switch_theme.setChecked(true);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putBoolean("night_mode",true);
-//                    editor.commit();
-//                } else {
-//                    getDelegate().setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//                    switch_theme.setChecked(false);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putBoolean("night_mode",false);
-//                    editor.commit();
-//                }
-//            }
-//        });
-
-        String[] languages = { text, "Portugês", "English"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(0);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectLang = adapterView.getItemAtPosition(i).toString();
-                if(selectLang.equals("Portugês")){
-                    setLocal(Settings.this,"pt");
-                    finish();
-                    startActivity(getIntent());
-
-                }else if (selectLang.equals("English")){
-                    setLocal(Settings.this, "en");
-                    finish();
-                    startActivity(getIntent());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        }
-
-        public void setLocal(Activity activity, String lanCode){
-        Locale locale = new Locale(lanCode);
-        locale.setDefault(locale);
-        Resources resources = activity.getResources();
-        Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
-        resources.updateConfiguration(config, resources.getDisplayMetrics());
-        }
+    }
 
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.settingsLayout);
@@ -206,6 +134,61 @@ public class Settings extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+    }
+
+    //Mostrar o dialog para o user selecionar o idioma
+    public void changeLanguageDialog(View v){
+        String savedLanguage;
+        int selectLang = 1;
+        SharedPreferences sharedPreferences = getSharedPreferences(SAVEDLANGUAGE, MODE_PRIVATE);
+        savedLanguage = sharedPreferences.getString(SAVEDLANGUAGE,"");
+
+        //Selecionar a opção que o user tinha escolhida anteriormente
+        if(savedLanguage.equals("en")){
+            selectLang = 1;
+        }else{
+            selectLang = 0;
+        }
+
+        String[] languages = {"Portugês", "English"};
+        new androidx.appcompat.app.AlertDialog.Builder(Settings.this)
+                .setTitle(getString(R.string.languageDialog))
+                .setSingleChoiceItems(languages, selectLang, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String selected = languages[i];
+                        if(selected.equals("Portugês")){
+                            setLocal(Settings.this,"pt");
+                            finish();
+                            startActivity(getIntent());
+
+                        }else if (selected.equals("English")){
+                            setLocal(Settings.this, "en");
+                            finish();
+                            startActivity(getIntent());
+                        }
+                    }
+                })
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                }).show();
+    }
+
+    //Selecionar o idioma
+    public void setLocal(Activity activity, String lanCode){
+        Locale locale = new Locale(lanCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+        SharedPreferences sharedPreferences = getSharedPreferences(SAVEDLANGUAGE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String language = Locale.getDefault().getLanguage();
+        editor.putString(SAVEDLANGUAGE, language);
+        editor.commit();
     }
 
     //Butão back

@@ -21,14 +21,6 @@
             android:gravity="center_horizontal"
             android:text="9:00 - 9:30"
             android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/txt_time_slot_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Disponível"
-            android:textSize="18sp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
