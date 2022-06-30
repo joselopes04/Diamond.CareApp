@@ -28,7 +28,6 @@
     <string name="loginLink">Já têm conta? Faça o Login</string>
 
 
-
     <!--Animation-->
     <string name="loading">Loading…</string>
 
@@ -116,6 +115,7 @@
     <string name="backToast">Pressione novamente para sair</string>
     <string name="registerToast">Foi registado com sucesso</string>
     <string name="emailAlready">Já existe uma conta associada a esse E-mail</string>
+    <string name="AppointmentSuccess">Marcação realizada com sucesso</string>
 
 
     <!--Share the app-->

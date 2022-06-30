@@ -114,6 +114,7 @@
     <string name="backToast">Press again to leave</string>
     <string name="registerToast">You have been registered successfully</string>
     <string name="emailAlready">There is already an account associated with this Email</string>
+    <string name="AppointmentSuccess">Appointment done successfully</string>
 
     <!--Share the app-->
     <string name="shareTitle">Share with:</string>

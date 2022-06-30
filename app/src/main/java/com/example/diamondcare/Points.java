@@ -1,15 +1,13 @@
 package com.example.diamondcare;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -31,11 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Calendar;
+public class Points extends AppCompatActivity {
 
-public class Home extends AppCompatActivity {
-
-    private long backPressedTime;
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userID;
@@ -43,6 +38,7 @@ public class Home extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+    TextView textViewPoints;
 
     //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
@@ -50,43 +46,46 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_points);
+
+        textViewPoints = findViewById(R.id.textViewPoints);
+
         setUpToolbar();
 
         //Menu de navegação
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_points);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId())
                 {
                     case  R.id.nav_home:
-                        drawerLayout.closeDrawer(navigationView);
+                        Intent intentHome = new Intent(Points.this, Home.class);
+                        startActivity(intentHome);
                         break;
 
                     case  R.id.nav_myProfile:
-                        Intent intentmyprofile = new Intent(Home.this, MyProfile.class);
+                        Intent intentmyprofile = new Intent(Points.this, MyProfile.class);
                         startActivity(intentmyprofile);
                         break;
 
                     case  R.id.nav_sessions:
-                        Intent intentsession = new Intent(Home.this, SessionsDate.class);
+                        Intent intentsession = new Intent(Points.this, SessionsDate.class);
                         startActivity(intentsession);
                         break;
 
                     case  R.id.nav_mySessions:
-                        Intent intentMySession = new Intent(Home.this, MySessions.class);
+                        Intent intentMySession = new Intent(Points.this, MySessions.class);
                         startActivity(intentMySession);
                         break;
 
                     case R.id.nav_points:
-                        Intent intentPoints = new Intent(Home.this, Points.class);
-                        startActivity(intentPoints);
+                        drawerLayout.closeDrawer(navigationView);
                         break;
 
                     case R.id.nav_settings:
-                        Intent intentsettings = new Intent(Home.this, Settings.class);
+                        Intent intentsettings = new Intent(Points.this, Settings.class);
                         startActivity( intentsettings);
                         break;
 
@@ -108,98 +107,55 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        //Mostrar os dados do user no ecrã
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
-        userID = user.getUid();
-
-        final TextView welcomeTextView = findViewById(R.id.welcome);
+        userID =  user.getUid();
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
 
-                User userprofile = snapshot.getValue(User.class);
+                if (userProfile != null){
+                    int points = userProfile.points;
+                    String pointstxt = String.valueOf(points);
 
-                Calendar calendar = Calendar.getInstance();
-                int Hours = calendar.get(Calendar.HOUR_OF_DAY);
-                String greeting = getString(R.string.greetings);
-
-                if (Hours > 0 && Hours<=4){
-                    greeting = getString(R.string.night);
-                }
-                if (Hours > 4 && Hours<=12) {
-                    greeting = getString(R.string.day);
-                }
-                if (Hours > 12 && Hours<=19) {
-                    greeting = getString(R.string.noon);
-                }
-                if(Hours > 19){
-                    greeting = getString(R.string.night);
-                }
-
-                if (userprofile != null){
-                    String name = userprofile.name;
-                    welcomeTextView.setText(  greeting+ " " + name +" !");
+                    textViewPoints.setText(pointstxt);
                 }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Home.this, getString(R.string.errorToast), Toast.LENGTH_SHORT).show();
+                String toastcontent = getString(R.string.errorToast);
+                ToastError(toastcontent);
+
             }
         });
-    }
 
-    //Cards de navegação
-    public void cardProfileClicked(View v){
-        Intent intentmyprofile = new Intent(Home.this, MyProfile.class);
-        startActivity(intentmyprofile);
-    }
-    public void cardSessionsClicked(View v){
-        Intent intentsession = new Intent(Home.this, SessionsDate.class);
-        startActivity(intentsession);
-    }
-    public void cardMySessionsClicked(View v){
-        Intent intentMySession = new Intent(Home.this, MySessions.class);
-        startActivity(intentMySession);
-    }
-    public void cardPointsClicked(View v){
-        Intent intentPoints = new Intent(Home.this, Points.class);
-        startActivity(intentPoints);
-    }
-    public void cardSettingsClicked(View v){
-        Intent intentsettings = new Intent(Home.this, Settings.class);
-        startActivity( intentsettings);
     }
 
     //Butão para abrir o drawermenu
     public void setUpToolbar() {
-        drawerLayout = findViewById(R.id.drawerLayout);
-        Toolbar toolbar = findViewById(R.id.toolbarhome);
+        drawerLayout = findViewById(R.id.pointsLayout);
+        Toolbar toolbar = findViewById(R.id.toolbarpoints);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_drawer_open, R.string.menu_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
 
-    //Butão back
-    @Override
-    public void onBackPressed() {
+    //Mostrar mensagem de erro
+    public void ToastError(String toastcontent){
         LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.toast_normal, (ViewGroup) findViewById(R.id.toast_normal_layout));
-        TextView toastText = layout.findViewById(R.id.toast_normal_txt);
-        toastText.setText(getString(R.string.backToast));
-        Toast backToast = new Toast(getApplicationContext());
-        backToast.setGravity(Gravity.CENTER, 0, 700);
-        backToast.setDuration(Toast.LENGTH_SHORT);
-        backToast.setView(layout);
-
-        if (backPressedTime + 2000 > System.currentTimeMillis()) {
-            moveTaskToBack(true);
-        } else {
-            backToast.show();
-        }
-        backPressedTime = System.currentTimeMillis();
+        View layout = inflater.inflate(R.layout.toast_error, (ViewGroup) findViewById(R.id.toast_error_layout));
+        TextView toastText = layout.findViewById(R.id.toast_error_txt);
+        Toast toast = new Toast(getApplicationContext());
+        toastText.setText(toastcontent);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 
     //Verificar ligação á internet do user qnd este ecrã é iniciado

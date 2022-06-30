@@ -110,6 +110,11 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
                         startActivity(intentMySession);
                         break;
 
+                    case R.id.nav_points:
+                        Intent intentPoints = new Intent(SessionsDate.this, Points.class);
+                        startActivity(intentPoints);
+                        break;
+
                     case R.id.nav_settings:
                         Intent intentsettings = new Intent(SessionsDate.this, Settings.class);
                         startActivity( intentsettings);

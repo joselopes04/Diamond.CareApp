@@ -1,16 +1,22 @@
 package com.example.diamondcare;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,7 +28,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diamondcare.Model.Appointment;
+import com.example.diamondcare.Model.User;
 import com.example.diamondcare.Utility.NetworkChangeListener;
+import com.example.diamondcare.Utility.ReminderBroadcast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -140,6 +148,11 @@ public class Sessions_step3 extends AppCompatActivity {
                         startActivity(intentMySession);
                         break;
 
+                    case R.id.nav_points:
+                        Intent intentPoints = new Intent(Sessions_step3.this, Points.class);
+                        startActivity(intentPoints);
+                        break;
+
                     case R.id.nav_settings:
                         Intent intentsettings = new Intent(Sessions_step3.this, Settings.class);
                         startActivity( intentsettings);
@@ -225,6 +238,7 @@ public class Sessions_step3 extends AppCompatActivity {
                         Appointment appointments = new Appointment(date, hour);
                         HashMap User = new HashMap();
                         databaseReference.child(userID).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.O)
                             @Override
                             public void onComplete(@NonNull Task task) {
 
@@ -234,15 +248,52 @@ public class Sessions_step3 extends AppCompatActivity {
                                     LayoutInflater inflater = getLayoutInflater();
                                     View layout = inflater.inflate(R.layout.toast_sucess, (ViewGroup) findViewById(R.id.toast_sucess_layout));
                                     TextView toastText = layout.findViewById(R.id.toast_sucess_txt);
-                                    toastText.setText("Marcação realizada com sucesso");
+                                    toastText.setText(getString(R.string.AppointmentSuccess));
                                     Toast toast = new Toast(getApplicationContext());
                                     toast.setGravity(Gravity.CENTER, 0, 0);
                                     toast.setDuration(Toast.LENGTH_SHORT);
                                     toast.setView(layout);
                                     toast.show();
 
-                                    Intent intentHome = new Intent(Sessions_step3.this, Home.class);
-                                    startActivity(intentHome);
+                                    //Mostrar os dados do user no ecrã
+                                    user = FirebaseAuth.getInstance().getCurrentUser();
+                                    reference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+                                    userID =  user.getUid();
+
+                                    reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                            User userProfile = snapshot.getValue(User.class);
+                                            if (userProfile != null){
+                                                int points = userProfile.points;
+                                                int totalpoints = points + 15;
+                                                updateData(totalpoints);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            String toastcontent = getString(R.string.errorToast);
+                                            ToastError(toastcontent);
+
+                                        }
+                                    });
+
+
+                                    createNotification();
+                                    Toast.makeText(Sessions_step3.this, "Reminder Set", Toast.LENGTH_SHORT).show();
+
+
+                                    Intent intentHome = new Intent(Sessions_step3.this, ReminderBroadcast.class);
+                                    PendingIntent pendingIntent = PendingIntent.getBroadcast(Sessions_step3.this,0,intentHome,PendingIntent.FLAG_IMMUTABLE);
+
+                                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                                    long timeAtButtonClick = System.currentTimeMillis();
+                                    long tenSecondsInMillis = 1000 * 10;
+
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP,timeAtButtonClick + tenSecondsInMillis,pendingIntent);
 
                                 }else{
                                     LayoutInflater inflater = getLayoutInflater();
@@ -260,11 +311,73 @@ public class Sessions_step3 extends AppCompatActivity {
                             }
                         });
                     }
+
                 }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         }).show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void createNotification(){
+            CharSequence name = "Diamond Care";
+            String description = "Lembrete de marcação";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("Diamond Care", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+    }
+
+    //Salvar os dados que o utilizador introduziu na DB
+    public void updateData(int totalpoints){
+        HashMap User = new HashMap();
+        User.put("points",totalpoints);
+        userID =  user.getUid();
+        databaseReference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        databaseReference.child(userID).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+
+                if (task.isSuccessful()){
+
+                    String toastcontent = getString((R.string.successChangesToast));
+                    ToastSuccess(toastcontent);
+
+                }else{
+                    String toastcontent = getString((R.string.errorToast));
+                    ToastError(toastcontent);
+
+                }
+            }
+        });
+    }
+
+    //Mostrar mensagem de sucesso
+    public void ToastSuccess(String toastcontent) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_sucess, (ViewGroup) findViewById(R.id.toast_sucess_layout));
+        TextView toastText = layout.findViewById(R.id.toast_sucess_txt);
+        Toast toast = new Toast(getApplicationContext());
+        toastText.setText(toastcontent);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    //Mostrar mensagem de erro
+    public void ToastError(String toastcontent) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_error, (ViewGroup) findViewById(R.id.toast_error_layout));
+        TextView toastText = layout.findViewById(R.id.toast_error_txt);
+        Toast toast = new Toast(getApplicationContext());
+        toastText.setText(toastcontent);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 
     //Verificar ligação á internet do user qnd este ecrã é iniciado

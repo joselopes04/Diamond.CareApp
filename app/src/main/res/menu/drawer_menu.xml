@@ -20,7 +20,7 @@
             android:title="@string/mySessionsTitle"
             android:icon="@drawable/ic_calendar"/>
 
-        <item android:id="@+id/nav_offer"
+        <item android:id="@+id/nav_points"
             android:title="@string/pointsTitle"
             android:icon="@drawable/ic_offer"/>
         </group>

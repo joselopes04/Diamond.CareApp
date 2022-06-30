@@ -237,7 +237,8 @@ public class Register extends AppCompatActivity {
 
                           //Criar o user na Realtimedatabase
                           String birth ="";
-                          User user = new User(txt_user_name,txt_user_email,txt_user_phone,hashedPassword,birth);
+                          int points = 10;
+                          User user = new User(txt_user_name,txt_user_email,txt_user_phone,hashedPassword,birth,points);
                           FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
                           .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                           .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

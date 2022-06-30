@@ -95,6 +95,7 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                     case  R.id.nav_home:
                         Intent intentHome = new Intent(MyProfile.this, Home.class);
                         startActivity(intentHome);
+                        break;
 
                     case  R.id.nav_myProfile:
                         drawerLayout.closeDrawer(navigationView);
@@ -108,6 +109,16 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                     case  R.id.nav_mySessions:
                         Intent intentMySession = new Intent(MyProfile.this, MySessions.class);
                         startActivity(intentMySession);
+                        break;
+
+                    case R.id.nav_points:
+                        Intent intentPoints = new Intent(MyProfile.this, Points.class);
+                        startActivity(intentPoints);
+                        break;
+
+                    case R.id.nav_settings:
+                        Intent intentsettings = new Intent(MyProfile.this, Settings.class);
+                        startActivity( intentsettings);
                         break;
 
                     case  R.id.nav_share:{

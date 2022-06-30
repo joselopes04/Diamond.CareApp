@@ -78,6 +78,11 @@ public class Settings extends AppCompatActivity {
                         startActivity(intentMySession);
                         break;
 
+                    case R.id.nav_points:
+                        Intent intentPoints = new Intent(Settings.this, Points.class);
+                        startActivity(intentPoints);
+                        break;
+
                     case R.id.nav_settings:
                         drawerLayout.closeDrawer(navigationView);
                         break;
