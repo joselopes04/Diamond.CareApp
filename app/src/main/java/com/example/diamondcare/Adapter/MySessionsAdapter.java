@@ -37,6 +37,7 @@ public class MySessionsAdapter extends RecyclerView.Adapter<MySessionsAdapter.Vi
         ShowAppointment appointment = list.get(position);
         holder.date.setText(appointment.getDate());
         holder.hour.setText(appointment.getHour());
+        holder.service.setText(appointment.getService());
 
     }
 
@@ -47,13 +48,14 @@ public class MySessionsAdapter extends RecyclerView.Adapter<MySessionsAdapter.Vi
 
     public static class ViewHolder extends  RecyclerView.ViewHolder{
 
-        TextView date, hour;
+        TextView date, hour, service;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             date = itemView.findViewById(R.id.txt_my_date);
             hour = itemView.findViewById(R.id.txt_my_hour);
+            service = itemView.findViewById(R.id.txt_my_service);
         }
     }
 

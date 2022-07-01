@@ -81,19 +81,27 @@ public class Sessions_step3 extends AppCompatActivity {
 
         TextView txtData = findViewById(R.id.textViewData);
         TextView txtHora = findViewById(R.id.textViewHora);
+        TextView txtService = findViewById(R.id.textViewService);
+        TextView txtPrice = findViewById(R.id.textViewPrice);
 
         String date = "Erro";
         String hour = "Erro";
+        String service = "Erro";
+        String price = "Erro";
 
         //obter os dados que o user preencheu no ecrã anterior
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             date = extras.getString("date");
             hour = extras.getString("hour");
+            service = extras.getString("service");
+            price = extras.getString("price");
         }
 
         txtData.setText(date);
         txtHora.setText(hour);
+        txtService.setText(service);
+        txtPrice.setText(price);
 
         //Steps no topo do ecrã
         ButterKnife.bind(Sessions_step3.this);
@@ -191,13 +199,14 @@ public class Sessions_step3 extends AppCompatActivity {
 
     }
 
-    //Defenir os steps no topo do ecrã
+    //Definir os steps no topo do ecrã
     private void setUpSetView() {
         List<String> stepList = new ArrayList<>();
+        stepList.add(getString(R.string.servicesTitle));
         stepList.add(getString(R.string.date));
         stepList.add(getString(R.string.confirm));
         stepView.setSteps(stepList);
-        stepView.go(1,true);
+        stepView.go(2,true);
     }
 
     //Ajustar a cor dos botões
@@ -218,7 +227,7 @@ public class Sessions_step3 extends AppCompatActivity {
 
     //Butão para voltar ao ecrã anterior
     public void btn_prev3Clicked(View v){
-        Intent intentNext = new Intent(Sessions_step3.this, SessionsDate.class);
+        Intent intentNext = new Intent(Sessions_step3.this, SessionsServices.class);
         startActivity(intentNext);
     }
 
@@ -232,15 +241,17 @@ public class Sessions_step3 extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String date = "Erro";
                         String hour = "Erro";
+                        String service = "Erro";
 
                         //obter os dados que o user preencheu no ecrã anterior
                         Bundle extras = getIntent().getExtras();
                         if(extras != null){
                             date = extras.getString("date");
                             hour = extras.getString("hour");
+                            service = extras.getString("service");
                         }
 
-                        Appointment appointments = new Appointment(date, hour);
+                        Appointment appointments = new Appointment(date, hour, service);
                         HashMap User = new HashMap();
                         databaseReference.child(userID).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
                             @RequiresApi(api = Build.VERSION_CODES.O)

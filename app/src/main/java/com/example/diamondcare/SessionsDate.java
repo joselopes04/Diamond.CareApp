@@ -215,9 +215,21 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         listener = new MyTimeSlotAdapter.RecyclerViewClickListener() {
             @Override
             public void onRecyclerClick(View v, int position) {
+                String service = "Erro";
+                String price = "Erro";
+
+                //obter os dados que o user preencheu no ecrã anterior
+                Bundle extras = getIntent().getExtras();
+                if(extras != null){
+                    service = extras.getString("service");
+                    price = extras.getString("price");
+                }
+
                 Intent intent = new Intent(getApplicationContext(), Sessions_step3.class);
                 intent.putExtra("date", sessiondate);
                 intent.putExtra("hour", timeSlotData.get(position).getHour());
+                intent.putExtra("service", service);
+                intent.putExtra("price", price);
                 startActivity(intent);
             }
         };
@@ -257,12 +269,20 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
 
     }
 
+
+    //Definir os steps no topo do ecrã
     private void setUpSetView() {
         List<String> stepList = new ArrayList<>();
+        stepList.add(getString(R.string.servicesTitle));
         stepList.add(getString(R.string.date));
         stepList.add(getString(R.string.confirm));
         stepView.setSteps(stepList);
-        stepView.go(0,true);
+        stepView.go(1,true);
+    }
+
+    public void  btn_prevClicked(View v){
+        Intent intentSessionsServices = new Intent(SessionsDate.this, SessionsServices.class);
+        startActivity(intentSessionsServices);
     }
 
     private void setUpColorButton() {

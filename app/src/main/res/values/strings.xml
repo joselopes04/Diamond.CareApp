@@ -51,7 +51,7 @@
 
     <!--Cards-->
     <string name="myProfileCardTitle">Ver o meu Perfil</string>
-    <string name="sessionsCardTitle">Marcar corte</string>
+    <string name="sessionsCardTitle">Marcar</string>
     <string name="appointmentsCardTitle">Marcações</string>
 
     <!--MyProfile-->
@@ -112,6 +112,8 @@
     <string name="depilationDesc">Adaptamos o tipo de cera ao o tipo de pele, para uma depilação perfeita.</string>
     <string name="massageTitle">Massagem</string>
     <string name="massageDesc">A massagem é um dos melhores presente que pode dar ao corpo.</string>
+    <string name="price">Preço:</string>
+    <string name="service">Serviço:</string>
 
     <!--Settings-->
     <string name="themeTitle">Tema da aplicação</string>
@@ -130,7 +132,6 @@
     <string name="registerToast">Foi registado com sucesso</string>
     <string name="emailAlready">Já existe uma conta associada a esse E-mail</string>
     <string name="AppointmentSuccess">Marcação realizada com sucesso</string>
-
 
     <!--Share the app-->
     <string name="shareTitle">Partilhar com:</string>

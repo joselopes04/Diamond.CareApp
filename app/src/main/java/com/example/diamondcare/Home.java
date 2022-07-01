@@ -9,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -162,7 +161,7 @@ public class Home extends AppCompatActivity {
         startActivity(intentmyprofile);
     }
     public void cardSessionsClicked(View v){
-        Intent intentsession = new Intent(Home.this, SessionsDate.class);
+        Intent intentsession = new Intent(Home.this, SessionsServices.class);
         startActivity(intentsession);
     }
     public void cardMySessionsClicked(View v){

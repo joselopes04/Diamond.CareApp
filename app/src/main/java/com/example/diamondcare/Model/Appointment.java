@@ -5,12 +5,12 @@ import java.io.Serializable;
 //Guardar appointments
 public class Appointment implements Serializable {
 
-     String date, hour;
+     String date, hour, service;
 
-    public Appointment(String hour, String date) {
+    public Appointment(String hour, String date, String service) {
         this.date = date;
         this.hour = hour;
-
+        this.service = service;
     }
 
     public String getDate() {
@@ -29,4 +29,10 @@ public class Appointment implements Serializable {
         this.hour = hour;
     }
 
+    public String getService() {
+        return service;
+    }
+    public void setService(String service) {
+        this.service = service;
+    }
 }

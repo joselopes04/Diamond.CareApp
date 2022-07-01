@@ -2,7 +2,7 @@ package com.example.diamondcare.Model;
 //Mostrar Appointments
 public class ShowAppointment {
 
-    String date, hour;
+    String date, hour, service;
 
     public String getDate() {
         return date;
@@ -20,4 +20,11 @@ public class ShowAppointment {
         this.hour = hour;
     }
 
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
 }

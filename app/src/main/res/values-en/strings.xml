@@ -50,7 +50,7 @@
 
     <!--Cards-->
     <string name="myProfileCardTitle">See my profile</string>
-    <string name="sessionsCardTitle">Schedule haircut</string>
+    <string name="sessionsCardTitle">Schedule</string>
     <string name="appointmentsCardTitle">Appointments</string>
 
     <!--MyProfile-->
@@ -111,6 +111,8 @@
     <string name="depilationDesc">We adapt the type of wax to the type of skin, for a perfect epilation.</string>
     <string name="massageTitle">Massage</string>
     <string name="massageDesc">Massage is one of the best gifts you can give your body.</string>
+    <string name="price">Price:</string>
+    <string name="service">Service:</string>
 
     <!--Settings-->
     <string name="themeTitle">Application theme</string>
