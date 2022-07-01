@@ -78,6 +78,11 @@ public class Settings extends AppCompatActivity {
                         startActivity(intentMySession);
                         break;
 
+                    case  R.id.nav_services:
+                        Intent intentServices = new Intent(Settings.this, Services.class);
+                        startActivity(intentServices);
+                        break;
+
                     case R.id.nav_points:
                         Intent intentPoints = new Intent(Settings.this, Points.class);
                         startActivity(intentPoints);

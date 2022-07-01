@@ -39,6 +39,7 @@
     <string name="profileTitle">Meu Perfil</string>
     <string name="sessionsTitle">Marcar sessões</string>
     <string name="mySessionsTitle">Minhas marcações</string>
+    <string name="servicesTitle">Serviços</string>
     <string name="pointsTitle">Pontos</string>
     <string name="settingsTitle">Definições</string>
 
@@ -98,6 +99,19 @@
     <string name="confirm">Confirmar</string>
     <string name="myAppointments">Minhas marcações</string>
     <string name="appointmentsInfo">Aqui pode gerir as suas marcações</string>
+
+    <!--Services-->
+    <string name="servicesInfo">Serviços prestados na Diamond Care</string>
+    <string name="hairCutTitle">Cortes de cabelo</string>
+    <string name="hairCutDesc">Na Diamond Care temos o mais completo serviço de corte de cabelo.</string>
+    <string name="manicureTitle">Manicure</string>
+    <string name="manicureDesc">Manter a saúde das suas unhas é essencial.</string>
+    <string name="pedicureTitle">Pedicure</string>
+    <string name="pedicureDesc">Nós temos um conjunto de tratamentos que irão transformar a sua pedicure num magnífico SPA para os seus pés.</string>
+    <string name="depilationTitle">Depilação</string>
+    <string name="depilationDesc">Adaptamos o tipo de cera ao o tipo de pele, para uma depilação perfeita.</string>
+    <string name="massageTitle">Massagem</string>
+    <string name="massageDesc">A massagem é um dos melhores presente que pode dar ao corpo.</string>
 
     <!--Settings-->
     <string name="themeTitle">Tema da aplicação</string>

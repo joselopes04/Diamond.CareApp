@@ -111,6 +111,11 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                         startActivity(intentMySession);
                         break;
 
+                    case  R.id.nav_services:
+                        Intent intentServices = new Intent(MyProfile.this, Services.class);
+                        startActivity(intentServices);
+                        break;
+
                     case R.id.nav_points:
                         Intent intentPoints = new Intent(MyProfile.this, Points.class);
                         startActivity(intentPoints);

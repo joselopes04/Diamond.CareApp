@@ -80,6 +80,11 @@ public class Points extends AppCompatActivity {
                         startActivity(intentMySession);
                         break;
 
+                    case  R.id.nav_services:
+                        Intent intentServices = new Intent(Points.this, Services.class);
+                        startActivity(intentServices);
+                        break;
+
                     case R.id.nav_points:
                         drawerLayout.closeDrawer(navigationView);
                         break;

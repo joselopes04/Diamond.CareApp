@@ -85,6 +85,11 @@ public class Home extends AppCompatActivity {
                         startActivity(intentPoints);
                         break;
 
+                    case  R.id.nav_services:
+                        Intent intentServices = new Intent(Home.this, Services.class);
+                        startActivity(intentServices);
+                        break;
+
                     case R.id.nav_settings:
                         Intent intentsettings = new Intent(Home.this, Settings.class);
                         startActivity( intentsettings);
@@ -162,6 +167,10 @@ public class Home extends AppCompatActivity {
     }
     public void cardMySessionsClicked(View v){
         Intent intentMySession = new Intent(Home.this, MySessions.class);
+        startActivity(intentMySession);
+    }
+    public void cardServicesClicked(View v){
+        Intent intentMySession = new Intent(Home.this, Services.class);
         startActivity(intentMySession);
     }
     public void cardPointsClicked(View v){

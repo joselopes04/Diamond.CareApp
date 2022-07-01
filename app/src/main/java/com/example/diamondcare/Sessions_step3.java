@@ -143,6 +143,11 @@ public class Sessions_step3 extends AppCompatActivity {
                         drawerLayout.closeDrawer(navigationView);
                         break;
 
+                    case  R.id.nav_services:
+                        Intent intentServices = new Intent(Sessions_step3.this, Services.class);
+                        startActivity(intentServices);
+                        break;
+
                     case  R.id.nav_mySessions:
                         Intent intentMySession = new Intent(Sessions_step3.this, MySessions.class);
                         startActivity(intentMySession);

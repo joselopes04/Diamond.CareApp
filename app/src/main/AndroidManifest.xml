@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCare">
         <activity
+            android:name=".Services"
+            android:exported="false" />
+        <activity
             android:name=".Points"
             android:exported="false" />
         <activity
