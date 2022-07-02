@@ -16,12 +16,13 @@ import com.example.diamondcare.R;
 import com.example.diamondcare.SessionsServices;
 
 import java.util.ArrayList;
-
+//Mostrar os serviços
 public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder> {
 
     private RecyclerViewClickListener listener;
     private ArrayList<ServicesData> servicesData;
 
+    //Metodo construtor
     public ServicesAdapter(RecyclerViewClickListener listener, ArrayList<ServicesData> servicesData){
         this.listener = listener;
         this.servicesData = servicesData;
@@ -52,6 +53,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         return viewHolder;
     }
 
+    //Definir imagem e texto
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String title = servicesData.get(position).getServiceTitle();

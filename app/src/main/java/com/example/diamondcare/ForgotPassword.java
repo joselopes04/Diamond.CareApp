@@ -35,8 +35,10 @@ public class ForgotPassword extends AppCompatActivity {
     LottieAnimationView progressBar;
     FirebaseAuth mAuth;
 
+    //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
+    //Objeto para fzr um delay
     final Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
@@ -55,10 +57,12 @@ public class ForgotPassword extends AppCompatActivity {
         animationDrawable.start();
     }
 
+    //metodo qundo o butão é tocado
     public void btn_recoverPressed(View v){
         resetPassword();
     }
 
+    //Metodo para enviar email de reset da palavra passe
     private void resetPassword(){
         new AlertDialog.Builder(ForgotPassword.this)
                 .setTitle(getString(R.string.resetPasswordTitle))
@@ -137,6 +141,7 @@ public class ForgotPassword extends AppCompatActivity {
         toast.show();
     }
 
+    //Verificar ligação á internet do user qnd este ecrã é iniciado
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -144,6 +149,7 @@ public class ForgotPassword extends AppCompatActivity {
         super.onStart();
     }
 
+    //Parar de verificar ligação á internet do user qnd este ecrã é fechado
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);

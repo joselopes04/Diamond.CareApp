@@ -160,7 +160,6 @@ public class Register extends AppCompatActivity {
                 nameLayout.setError(null);
             }
 
-
         emailLayout.setEndIconVisible(true);
         if (txt_user_email.isEmpty()) {
             editTextEmail.setError(getString(R.string.insertEmail));
@@ -209,6 +208,7 @@ public class Register extends AppCompatActivity {
             return;
         }
 
+        //Desativar tudo enquanto a app verifica os dados
         btn_register.setEnabled(false);
         editTextName.setEnabled(false);
         editTextEmail.setEnabled(false);

@@ -5,6 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class CheckNetwork {
+
+    //Verificar a ligação á internet do utilizador
     public static boolean isConnectedToInternet(Context context) {
 
         ConnectivityManager connectivityManager = (ConnectivityManager)

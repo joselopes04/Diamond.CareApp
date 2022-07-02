@@ -1,5 +1,5 @@
 package com.example.diamondcare.Model;
-//Mostrar Appointments
+//Mostrar marcações ao user
 public class ShowAppointment {
 
     String date, hour, service;

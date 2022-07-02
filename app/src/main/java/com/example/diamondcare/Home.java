@@ -118,6 +118,7 @@ public class Home extends AppCompatActivity {
 
         final TextView welcomeTextView = findViewById(R.id.welcome);
 
+        //Buscar nome do user na DB e consoante as horas do dia mostrar a saudação
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

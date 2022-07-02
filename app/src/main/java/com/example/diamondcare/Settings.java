@@ -40,6 +40,7 @@ public class Settings extends AppCompatActivity {
 
     TextView txtViewLanguage;
 
+    //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
@@ -51,6 +52,7 @@ public class Settings extends AppCompatActivity {
 
         setUpToolbar();
 
+        //Menu
         navigationView = findViewById(R.id.navigation_menu);
         navigationView.setCheckedItem(R.id.nav_settings);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -112,6 +114,7 @@ public class Settings extends AppCompatActivity {
 
     }
 
+    //butão abrir menu
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.settingsLayout);
         Toolbar toolbar = findViewById(R.id.toolbarsettings);
@@ -208,6 +211,7 @@ public class Settings extends AppCompatActivity {
         startActivity(intentHome);
     }
 
+    //Verificar ligação á internet do user qnd este ecrã é iniciado
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -215,6 +219,7 @@ public class Settings extends AppCompatActivity {
         super.onStart();
     }
 
+    //Parar de verificar ligação á internet do user qnd este ecrã é fechado
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);

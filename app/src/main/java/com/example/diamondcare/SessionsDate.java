@@ -53,7 +53,7 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
     Calendar calendar;
     TextView textViewDate;
 
-
+    //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @BindView(R.id.step_view3)
@@ -84,6 +84,7 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         setUpSetView();
         setUpColorButton();
 
+        //Menu
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setCheckedItem(R.id.nav_sessions);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -202,6 +203,7 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
 
     }
 
+    //Mostrar os horários
     private void setAdapter() {
         setOnClickListner();
         MyTimeSlotAdapter adapter = new MyTimeSlotAdapter(timeSlotData, listener);
@@ -211,6 +213,7 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         recyclerView.setAdapter(adapter);
     }
 
+    //Quando se clica num horário
     private void setOnClickListner() {
         listener = new MyTimeSlotAdapter.RecyclerViewClickListener() {
             @Override
@@ -235,6 +238,7 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         };
     }
 
+    //Lista dos horários
     private void setTimeSlot() {
         timeSlotData.add(new TimeSlotData("09:00 - 09:30", "Disponível", false));
         timeSlotData.add(new TimeSlotData("09:30 - 10:00", "Disponível", false));
@@ -260,6 +264,8 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         return calendar;
     }
 
+
+    //Butão para abrir o drawermenu
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.sessionsDate_Layout);
         Toolbar toolbar = findViewById(R.id.toolbarsessionsDate);
@@ -268,7 +274,6 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         actionBarDrawerToggle.syncState();
 
     }
-
 
     //Definir os steps no topo do ecrã
     private void setUpSetView() {
@@ -285,8 +290,8 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         startActivity(intentSessionsServices);
     }
 
+    //Butões
     private void setUpColorButton() {
-
         if (btn_next.isEnabled()){
             btn_next.setBackgroundResource(R.color.purple_700);
         }else{
@@ -305,6 +310,7 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         startActivity(intentNext);
     }
 
+    //Definir data
     @Override
     public void onDateSet(DatePickerDialog view, int Year, int Month, int Day) {
         String date = Day+"/"+(Month+1)+"/"+Year;
@@ -313,6 +319,7 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         setAdapter();
     }
 
+    //Verificar ligação á internet do user qnd este ecrã é iniciado
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -320,6 +327,8 @@ public class SessionsDate extends AppCompatActivity implements DatePickerDialog.
         super.onStart();
     }
 
+
+    //Parar de verificar ligação á internet do user qnd este ecrã é fechado
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);

@@ -6,6 +6,7 @@ public class ServicesData implements Serializable {
     private String serviceTitle, serviceDescription, price;
     private Integer serviceImage;
 
+    //Metodo construtor dos serviços
     public ServicesData(String serviceTitle, String serviceDescription, Integer serviceImage, String price) {
         this.serviceTitle = serviceTitle;
         this.serviceDescription = serviceDescription;

@@ -53,6 +53,7 @@ public class MySessions extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
+    //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
@@ -61,6 +62,7 @@ public class MySessions extends AppCompatActivity {
         setContentView(R.layout.activity_my_sessions);
         setUpToolbar();
 
+        //Menu de navegação
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setCheckedItem(R.id.nav_mySessions);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -134,6 +136,7 @@ public class MySessions extends AppCompatActivity {
         mySessionsAdapter = new MySessionsAdapter(this, list);
         recyclerView.setAdapter(mySessionsAdapter);
 
+        //Mostrar marcações ao user
         databaseReference.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -152,6 +155,7 @@ public class MySessions extends AppCompatActivity {
             }
         });
 
+        //Swipe left
         ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -205,12 +209,14 @@ public class MySessions extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
+    //Butão back
     @Override
     public void onBackPressed() {
         Intent intentHome = new Intent(MySessions.this, Home.class);
         startActivity(intentHome);
     }
 
+    //Verificar ligação á internet do user qnd este ecrã é iniciado
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -218,6 +224,7 @@ public class MySessions extends AppCompatActivity {
         super.onStart();
     }
 
+    //Parar de verificar ligação á internet do user qnd este ecrã é fechado
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);

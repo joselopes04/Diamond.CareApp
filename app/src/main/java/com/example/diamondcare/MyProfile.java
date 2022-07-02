@@ -144,7 +144,6 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
             }
         });
 
-
         //Mostrar os dados do user no ecrã
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");

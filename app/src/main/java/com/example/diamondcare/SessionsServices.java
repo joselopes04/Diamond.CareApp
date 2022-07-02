@@ -46,7 +46,6 @@ public class SessionsServices extends AppCompatActivity {
     @BindView(R.id.step_view4)
     StepView stepView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +60,7 @@ public class SessionsServices extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerSessionsServices);
 
 
+        //Menu
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setCheckedItem(R.id.nav_sessions);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -118,12 +118,16 @@ public class SessionsServices extends AppCompatActivity {
                 return true;
             }
         });
-            servicesData = new ArrayList<>();
-                servicesData.add(new ServicesData(getString(R.string.hairCutTitle),getString(R.string.hairCutDesc),R.drawable.hair, "6 €"));
-                servicesData.add(new ServicesData(getString(R.string.manicureTitle),getString(R.string.manicureDesc),R.drawable.nails, "5 €"));
-                servicesData.add(new ServicesData(getString(R.string.pedicureTitle),getString(R.string.pedicureDesc),R.drawable.pedicure, "5 €"));
-                servicesData.add(new ServicesData(getString(R.string.depilationTitle),getString(R.string.depilationDesc),R.drawable.hair_removal, "10 €"));
-                servicesData.add(new ServicesData(getString(R.string.massageTitle),getString(R.string.massageDesc),R.drawable.massage, "20 €"));
+
+        //Lista dos serviços
+        servicesData = new ArrayList<>();
+        servicesData.add(new ServicesData(getString(R.string.hairCutTitle),getString(R.string.hairCutDesc),R.drawable.hair, "6 €"));
+        servicesData.add(new ServicesData(getString(R.string.manicureTitle),getString(R.string.manicureDesc),R.drawable.nails, "5 €"));
+        servicesData.add(new ServicesData(getString(R.string.pedicureTitle),getString(R.string.pedicureDesc),R.drawable.pedicure, "5 €"));
+        servicesData.add(new ServicesData(getString(R.string.depilationTitle),getString(R.string.depilationDesc),R.drawable.hair_removal, "10 €"));
+        servicesData.add(new ServicesData(getString(R.string.massageTitle),getString(R.string.massageDesc),R.drawable.massage, "20 €"));
+        servicesData.add(new ServicesData(getString(R.string.goldTitle),getString(R.string.goldDescription),R.drawable.gold, "30 €"));
+        servicesData.add(new ServicesData(getString(R.string.diamondTitle),getString(R.string.diamondDescription),R.drawable.diamond, "40 €"));
         setOnClickListner();
 
         ServicesAdapter adapter = new ServicesAdapter(listener, servicesData);
@@ -133,6 +137,7 @@ public class SessionsServices extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    //Clicar no serviço
     private void setOnClickListner() {
         listener = new ServicesAdapter.RecyclerViewClickListener(){
             @Override
@@ -154,6 +159,7 @@ public class SessionsServices extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
+    //Steps topo do ecrã
     private void setUpSetView() {
         List<String> stepList = new ArrayList<>();
         stepList.add(getString(R.string.servicesTitle));

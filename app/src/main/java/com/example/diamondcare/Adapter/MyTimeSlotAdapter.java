@@ -17,7 +17,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.Vi
     private ArrayList<TimeSlotData> timeSlotData;
     private RecyclerViewClickListener listener;
 
-
+    //Horários
     public MyTimeSlotAdapter(ArrayList<TimeSlotData> timeSlotData, RecyclerViewClickListener listener){
         this.timeSlotData = timeSlotData;
         this.listener = listener;

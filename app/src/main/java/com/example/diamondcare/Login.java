@@ -47,8 +47,10 @@ public class Login extends AppCompatActivity {
     Button btn_entrar;
     TextInputLayout emailLayout, passLayout;
 
+    //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
+    //Objeto para fzr um delay
     final Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
@@ -98,6 +100,7 @@ public class Login extends AppCompatActivity {
 
         emailLayout.setEndIconVisible(true);
 
+        //Verificar se os dados são válidos
         if (!Patterns.EMAIL_ADDRESS.matcher(userMail).matches()){
             emailLayout.setError(getString(R.string.invalidEmail));
             emailLayout.setEndIconDrawable(R.drawable.ic_error);
@@ -115,6 +118,7 @@ public class Login extends AppCompatActivity {
             passLayout.setError(null);
         }
 
+        //Desativar tudo enquanto a app verifica os dados
         btn_entrar.setEnabled(false);
         remenber.setEnabled(false);
         textViewEsqPassword.setEnabled(false);
@@ -181,6 +185,7 @@ public class Login extends AppCompatActivity {
                 }
     }
 
+    //Desativar butão back durante a verificação dos dados
     @Override
     public void onBackPressed() {
         if(!remenber.isEnabled()){
@@ -190,6 +195,7 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    //Verificar ligação á internet do user qnd este ecrã é iniciado
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -197,6 +203,7 @@ public class Login extends AppCompatActivity {
         super.onStart();
     }
 
+    //Parar de verificar ligação á internet do user qnd este ecrã é fechado
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);

@@ -10,6 +10,7 @@ public class User {
 
     }
 
+    //Metodo construtor do user
     public User (String name, String email, String phone, String password, String birth, int points){
         this.name = name;
         this.email = email;

@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/Diamond.CareApp/app/src/main/res/layout/activity_animation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/Diamond.CareApp/app/src/main/res/layout/activity_home.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Jose/AndroidStudioProjects/Diamond.CareApp/app/src/main/res/layout/activity_points.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/Diamond.CareApp/app/src/main/res/layout/activity_services.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/Diamond.CareApp/app/src/main/res/layout/activity_sessions_date.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Jose/AndroidStudioProjects/Diamond.CareApp/app/src/main/res/layout/activity_sessions_services.xml" value="0.22826086956521738" />

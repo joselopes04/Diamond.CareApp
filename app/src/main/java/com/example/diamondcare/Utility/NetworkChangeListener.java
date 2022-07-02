@@ -15,6 +15,8 @@ import com.example.diamondcare.R;
 public class NetworkChangeListener extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        //Se não houver ligação à internet mostrar erro
         if (!CheckNetwork.isConnectedToInternet(context)){
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             View layout_dialog = LayoutInflater.from(context).inflate(R.layout.check_internet_dialog, null);

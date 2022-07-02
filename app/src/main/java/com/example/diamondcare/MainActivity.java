@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     String savedLanguage;
 
+    //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
@@ -54,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Se a app não verificou o idioma faz este if se já ignora
+        //Verificar se a app já verificou o idioma
+        // a app quando faz o primeiro if guarda um valor em como já verificou o idioma
         //Sem este if a app ia estar num loop infinito de verificação do idioma
         Bundle extras = getIntent().getExtras();
         if (extras == null){
@@ -76,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }
-
 
         //Fundo animado
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
@@ -176,9 +177,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Confirmar se o user deseja mesmo sair da app
     @Override
     public void onBackPressed() {
-
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_normal, (ViewGroup) findViewById(R.id.toast_normal_layout));
         TextView toastText = layout.findViewById(R.id.toast_normal_txt);
@@ -197,14 +198,15 @@ public class MainActivity extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
     }
 
+    //Verificar ligação á internet do user qnd este ecrã é iniciado
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkChangeListener, filter);
         super.onStart();
-
     }
 
+    //Parar de verificar ligação á internet do user qnd este ecrã é fechado
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);

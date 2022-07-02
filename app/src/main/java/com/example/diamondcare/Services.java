@@ -105,12 +105,15 @@ public class Services extends AppCompatActivity {
             }
         });
 
+        //Lista de serviços
         servicesData = new ArrayList<>();
-        servicesData.add(new ServicesData(getString(R.string.hairCutTitle),getString(R.string.hairCutDesc),R.drawable.hair, "6 €"));
+        servicesData.add(new ServicesData(getString(R.string.hairCutTitle),getString(R.string.hairCutDesc),R.drawable.hair, "5 €"));
         servicesData.add(new ServicesData(getString(R.string.manicureTitle),getString(R.string.manicureDesc),R.drawable.nails, "5 €"));
         servicesData.add(new ServicesData(getString(R.string.pedicureTitle),getString(R.string.pedicureDesc),R.drawable.pedicure, "5 €"));
         servicesData.add(new ServicesData(getString(R.string.depilationTitle),getString(R.string.depilationDesc),R.drawable.hair_removal, "10 €"));
         servicesData.add(new ServicesData(getString(R.string.massageTitle),getString(R.string.massageDesc),R.drawable.massage, "20 €"));
+        servicesData.add(new ServicesData(getString(R.string.goldTitle),getString(R.string.goldDescription),R.drawable.gold, "30 €"));
+        servicesData.add(new ServicesData(getString(R.string.diamondTitle),getString(R.string.diamondDescription),R.drawable.diamond, "40 €"));
         setOnClickListner();
 
         ServicesAdapter adapter = new ServicesAdapter(listener, servicesData);
@@ -129,6 +132,7 @@ public class Services extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
+    //Quando se clica num serviço
     private void setOnClickListner() {
         listener = new ServicesAdapter.RecyclerViewClickListener(){
             @Override

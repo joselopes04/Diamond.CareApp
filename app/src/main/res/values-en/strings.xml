@@ -39,7 +39,7 @@
     <string name="sessionsTitle">Book sessions</string>
     <string name="mySessionsTitle">My Appointments</string>
     <string name="servicesTitle">Services</string>
-    <string name="pointsTitle">Points</string>
+    <string name="pointsTitle">Diamonds</string>
     <string name="settingsTitle">Settings</string>
 
     <!--Home-->
@@ -111,8 +111,16 @@
     <string name="depilationDesc">We adapt the type of wax to the type of skin, for a perfect epilation.</string>
     <string name="massageTitle">Massage</string>
     <string name="massageDesc">Massage is one of the best gifts you can give your body.</string>
+    <string name="goldTitle">Golden Pack</string>
+    <string name="goldDescription">This pack includes a haircut, and a complete manicure and pedicure service.</string>
+    <string name="diamondTitle">Diamond Pack</string>
+    <string name="diamondDescription">This pack includes everything the golden pack includes, plus a relaxing massage</string>
     <string name="price">Price:</string>
     <string name="service">Service:</string>
+
+    <!--Points-->
+    <string name="pointsDesc">You will earn diamonds as you use the app. You can exchange your diamonds for discounts on services</string>
+    <string name="pointsEarned">Already accumulated:</string>
 
     <!--Settings-->
     <string name="themeTitle">Application theme</string>

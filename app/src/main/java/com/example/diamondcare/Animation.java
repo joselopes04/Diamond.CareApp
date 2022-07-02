@@ -40,7 +40,7 @@ public class Animation extends AppCompatActivity {
             setLocal(Animation.this,"pt");
         }
 
-
+        //Delay para mostrar a animação
         Thread thread = new Thread() {
 
             public void run(){
@@ -74,6 +74,7 @@ public class Animation extends AppCompatActivity {
         editor.commit();
     }
 
+    //Desativar o butão back
     @Override
     public void onBackPressed() {}
 

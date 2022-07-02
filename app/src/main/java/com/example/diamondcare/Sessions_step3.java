@@ -65,6 +65,7 @@ public class Sessions_step3 extends AppCompatActivity {
     NavigationView navigationView;
     DatabaseReference databaseReference;
 
+    //Objeto que verifica a ligação á internet
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @BindView(R.id.step_view3)
@@ -251,6 +252,7 @@ public class Sessions_step3 extends AppCompatActivity {
                             service = extras.getString("service");
                         }
 
+                        //Guardar a marcação
                         Appointment appointments = new Appointment(date, hour, service);
                         HashMap User = new HashMap();
                         databaseReference.child(userID).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {

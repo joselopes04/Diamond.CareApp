@@ -40,7 +40,7 @@
     <string name="sessionsTitle">Marcar sessões</string>
     <string name="mySessionsTitle">Minhas marcações</string>
     <string name="servicesTitle">Serviços</string>
-    <string name="pointsTitle">Pontos</string>
+    <string name="pointsTitle">Diamantes</string>
     <string name="settingsTitle">Definições</string>
 
     <!--Home-->
@@ -112,8 +112,16 @@
     <string name="depilationDesc">Adaptamos o tipo de cera ao o tipo de pele, para uma depilação perfeita.</string>
     <string name="massageTitle">Massagem</string>
     <string name="massageDesc">A massagem é um dos melhores presente que pode dar ao corpo.</string>
+    <string name="goldTitle">Pack Dourado</string>
+    <string name="goldDescription">Este pack inclui um corte de cabelo, e um serciço completo de manicure e pedicure</string>
+    <string name="diamondTitle">Pack Diamante</string>
+    <string name="diamondDescription">Este pack inclui tudo o que o pack dourado inclui, e uma massagem relaxante</string>
     <string name="price">Preço:</string>
     <string name="service">Serviço:</string>
+
+    <!--Points-->
+    <string name="pointsDesc">Vai ganhar diamantes à medida que usar a app. Poderá trocar os seus diamantes por descontos em serviços.</string>
+    <string name="pointsEarned">Já acumulou:</string>
 
     <!--Settings-->
     <string name="themeTitle">Tema da aplicação</string>
