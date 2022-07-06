@@ -100,15 +100,15 @@
     <string name="appointmentsInfo">Here you can manage your appointments</string>
 
     <!--Services-->
-    <string name="servicesInfo">Provided servicesData at Diamond Care</string>
+    <string name="servicesInfo">Provided services at Diamond Care</string>
     <string name="hairCutTitle">Hair cuts</string>
-    <string name="hairCutDesc">At Diamond Care we have the most complete haircut servicesData.</string>
+    <string name="hairCutDesc">At Diamond Care we have the most complete haircut service.</string>
     <string name="manicureTitle">Manicure</string>
     <string name="manicureDesc">Keeping your nails healthy is essential.</string>
     <string name="pedicureTitle">Pedicure</string>
     <string name="pedicureDesc">We have a set of treatments that will transform your pedicure into a magnificent SPA for your feet.</string>
     <string name="depilationTitle">Hair removal</string>
-    <string name="depilationDesc">We adapt the type of wax to the type of skin, for a perfect epilation.</string>
+    <string name="depilationDesc">We adapt the type of wax to the type of skin, for a perfect depilation.</string>
     <string name="massageTitle">Massage</string>
     <string name="massageDesc">Massage is one of the best gifts you can give your body.</string>
     <string name="goldTitle">Golden Pack</string>

@@ -125,8 +125,8 @@ public class Sessions_step3 extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast toast2 = Toast.makeText(Sessions_step3.this, "Erro na DB", Toast.LENGTH_SHORT);
-                toast2.show();
+//                Toast toast2 = Toast.makeText(Sessions_step3.this, "Erro na DB", Toast.LENGTH_SHORT);
+//                toast2.show();
             }
         });
 
@@ -297,21 +297,22 @@ public class Sessions_step3 extends AppCompatActivity {
 
                                         }
                                     });
-
-
-                                    createNotification();
-                                    Toast.makeText(Sessions_step3.this, "Reminder Set", Toast.LENGTH_SHORT).show();
-
-
-                                    Intent intentHome = new Intent(Sessions_step3.this, ReminderBroadcast.class);
-                                    PendingIntent pendingIntent = PendingIntent.getBroadcast(Sessions_step3.this,0,intentHome,PendingIntent.FLAG_IMMUTABLE);
-
-                                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-                                    long timeAtButtonClick = System.currentTimeMillis();
-                                    long tenSecondsInMillis = 1000 * 10;
-
-                                    alarmManager.set(AlarmManager.RTC_WAKEUP,timeAtButtonClick + tenSecondsInMillis,pendingIntent);
+                                    Intent intentHome = new Intent(Sessions_step3.this, Home.class);
+                                    startActivity(intentHome);
+//
+//                                    createNotification();
+//                                    Toast.makeText(Sessions_step3.this, "Reminder Set", Toast.LENGTH_SHORT).show();
+//
+//
+//                                    Intent intentHome = new Intent(Sessions_step3.this, ReminderBroadcast.class);
+//                                    PendingIntent pendingIntent = PendingIntent.getBroadcast(Sessions_step3.this,0,intentHome,PendingIntent.FLAG_IMMUTABLE);
+//
+//                                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//
+//                                    long timeAtButtonClick = System.currentTimeMillis();
+//                                    long tenSecondsInMillis = 1000 * 10;
+//
+//                                    alarmManager.set(AlarmManager.RTC_WAKEUP,timeAtButtonClick + tenSecondsInMillis,pendingIntent);
 
                                 }else{
                                     LayoutInflater inflater = getLayoutInflater();

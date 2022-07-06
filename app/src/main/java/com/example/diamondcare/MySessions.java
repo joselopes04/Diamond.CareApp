@@ -150,8 +150,8 @@ public class MySessions extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast toast =Toast. makeText(getApplicationContext(),"Erro na DB",Toast. LENGTH_SHORT);
-                toast.show();
+//                Toast toast =Toast. makeText(getApplicationContext(),"Erro na DB",Toast. LENGTH_SHORT);
+//                toast.show();
             }
         });
 

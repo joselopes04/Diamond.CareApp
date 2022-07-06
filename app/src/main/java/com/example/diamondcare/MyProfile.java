@@ -415,15 +415,16 @@ public class MyProfile extends AppCompatActivity implements PopupMenu.OnMenuItem
                 .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        //apagar user na realtimedatabase
+                        databaseReference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users").child(userID);
+                        databaseReference.removeValue();
+
                         user.delete()
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-
-                                            //apagar user na realtimedatabase
-                                            databaseReference = FirebaseDatabase.getInstance("https://diamond-care-22e78-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users").child(userID);
-                                            databaseReference.removeValue();
 
                                             SharedPreferences preferences = getSharedPreferences("Checkbox", MODE_PRIVATE);
                                             SharedPreferences.Editor editor = preferences.edit();
