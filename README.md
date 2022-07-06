@@ -1,13 +1,30 @@
 # Diamond.CareApp
-Aplicação para android que permite fazer marcações num salão de beleza
+<p align="center"><img width=20% src="https://github.com/joselopes04/Diamond.CareApp/blob/master/Assets/Icon.png"></p>
 
-Desenvolvido no Android Studio
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/joselopes04/Diamond.CareApp/blob/master/LICENSE)<br>
+Diamond Care is an aplication that allows users to make appointments for a beauty saloon. 
 
-O que têm:
+## Software used
+Android Studio 
+Firebase
 
-Registo e o login de um user através da Firebase, enviar um email para repor a palavra passe.
-Menu Hamburguer
-Cards de navegação
-Ver e editar as informações da conta utilizador.
-Ecrã para realizar marcações.
+## Layouts
+Welcome Screen
+<p align="center"><img width=30% src="https://github.com/joselopes04/Diamond.CareApp/blob/master/Assets/welcomeScreen.jpg"></p>
 
+Home Screen
+<p align="center"><img width=30% src="https://github.com/joselopes04/Diamond.CareApp/blob/master/Assets/HomeScreen.jpg"></p>
+
+Services Screen
+<p align="center"><img width=30% src="https://github.com/joselopes04/Diamond.CareApp/blob/master/Assets/services.jpg"></p>
+
+Confirm Appointment
+<p align="center"><img width=30% src="https://github.com/joselopes04/Diamond.CareApp/blob/master/Assets/confirmAppointment.jpg"></p>
+
+My Appointments
+<p align="center"><img width=30% src="https://github.com/joselopes04/Diamond.CareApp/blob/master/Assets/myAppointments.jpg"></p>
+
+## Aplication details
+The aplication isnt totally finnished so expect some bugs.
+Add more details later
