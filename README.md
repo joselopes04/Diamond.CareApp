@@ -1,9 +1,12 @@
-# Diamond.CareApp
-<p align="center"><img width=20% src="https://github.com/joselopes04/Diamond.CareApp/blob/master/Assets/Icon.png"></p>
+# Diamond Care
+<p align="center"><img width=10% src="https://github.com/joselopes04/Diamond.CareApp/blob/master/Assets/Icon.png"></p>
+
+<p align="center"><img width=60% src="https://github.com/joselopes04/Diamond.CareApp/blob/master/Assets/Screenshots.jpeg"></p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/joselopes04/Diamond.CareApp/blob/master/LICENSE)<br>
-Diamond Care is an aplication that allows users to make appointments for a beauty saloon. 
+Diamond Care is an aplication that allows users to make appointments for a beauty saloon. It is a final course school project and it's main idea is to solve the lack of organization in beauty salons. With this app, beauticians can recive appointments from customers wich way more efficiently than the traditional way which required a lot of phone calls and agendas. All is now centralized in the app! 
+
 
 ## Table of content
 - [Software used](#software-used)
