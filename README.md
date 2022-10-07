@@ -31,7 +31,7 @@ Click on this <a href="https://drive.google.com/file/d/1_waqtASnBfk2ITtdNhKs4gGp
 - Home Screen
   - Cards to navigate on the app.
   - Drawer menu to navigate.
-  - Greetings message according with the time of the day .
+  - Greetings message according with the time of the day.
 - My profile
   - Manage your data.
   - Reset password.
